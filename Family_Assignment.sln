@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Family_Assignment", "Family
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FamilyWebApi", "FamilyWebApi\FamilyWebApi.csproj", "{43A74A40-3313-4528-85F7-39E21BA0BEE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{26B08398-FFD2-46C3-BFCA-715496DBD963}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{7C31CD39-4712-48DB-90D4-07B5E00A19CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{43A74A40-3313-4528-85F7-39E21BA0BEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43A74A40-3313-4528-85F7-39E21BA0BEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43A74A40-3313-4528-85F7-39E21BA0BEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26B08398-FFD2-46C3-BFCA-715496DBD963}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B08398-FFD2-46C3-BFCA-715496DBD963}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B08398-FFD2-46C3-BFCA-715496DBD963}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B08398-FFD2-46C3-BFCA-715496DBD963}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C31CD39-4712-48DB-90D4-07B5E00A19CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C31CD39-4712-48DB-90D4-07B5E00A19CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C31CD39-4712-48DB-90D4-07B5E00A19CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C31CD39-4712-48DB-90D4-07B5E00A19CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
