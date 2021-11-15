@@ -23,4 +23,8 @@
       <PackageReference Include="Syncfusion.Blazor" Version="19.3.0.47" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Model\Model.csproj" />
+    </ItemGroup>
+
 </Project>

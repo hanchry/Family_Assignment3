@@ -10,4 +10,14 @@
         <PackageReference Include="System.Net.Http" Version="4.3.4" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+      <ProjectReference Include="..\Model\Model.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Data\JsonFiles\families.json" />
+      <_ContentIncludedByDefault Remove="Data\JsonFiles\users.json" />
+    </ItemGroup>
+
 </Project>
