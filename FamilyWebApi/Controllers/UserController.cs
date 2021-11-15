@@ -19,9 +19,9 @@ namespace FamilyWebApi.Controllers
     {
         private IUserReader userReader;
 
-        public UserController(IUserReader userReader)
+        public UserController()
         {
-            this.userReader = userReader;
+            userReader = new UserReader();
         }
 
         [HttpGet]

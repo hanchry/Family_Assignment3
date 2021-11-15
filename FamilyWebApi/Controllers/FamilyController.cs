@@ -15,9 +15,9 @@ namespace FamilyWebApi.Controllers
     {
         private IFamilyReader familyReader;
 
-        public FamilyController(IFamilyReader familyReader)
+        public FamilyController()
         {
-            this.familyReader = familyReader;
+            familyReader = new FileReader();
         }
 
         [HttpGet]
