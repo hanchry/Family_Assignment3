@@ -4,6 +4,7 @@ namespace Models
 {
     public class Person
     {
+        [Key]
         public int Id { get; set; }
 
         [Required, MinLength(1, ErrorMessage = "Please enter first name")]
