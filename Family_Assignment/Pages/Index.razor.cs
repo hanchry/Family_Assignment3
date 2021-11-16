@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
-using Models;
+using Model;
 using Syncfusion.Blazor;
 
 namespace Family_Assignment.Pages

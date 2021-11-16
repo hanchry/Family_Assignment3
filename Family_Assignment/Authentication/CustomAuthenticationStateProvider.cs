@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Family_Assignment.Data;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using Models;
+using Model;
 
 namespace Family_Assignment.Authentication
 {

@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Models
+namespace Model
 {
     public class Job
     {
@@ -10,7 +9,7 @@ namespace Models
             JobTitle = "no tittle";
             Salary = 0;
         }
-        
+        [Key]
         public string JobTitle { get; set; }
       
         public int Salary { get; set; }

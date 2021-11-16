@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Models;
+using Model;
 
 namespace Family_Assignment.Pages
 {
@@ -20,21 +20,21 @@ namespace Family_Assignment.Pages
             family = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             adultToView = family.Adults.Find(t => t.Id == Id);
             newJob = new Job();
-            jobToView = adultToView.JobTitle;
+            jobToView = adultToView.JobTittle;
         }
 
         private async Task AddJob()
         {
             jobToView = newJob;
             Family theFamily = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
-            theFamily.Adults.Find(t => t.Id == Id).JobTitle = newJob;
+            theFamily.Adults.Find(t => t.Id == Id).JobTittle = newJob;
             await fileReader.UpdateFamilyAsync(theFamily);
         }
 
         private async Task DeleteJob()
         {
             Family theFamily = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
-            theFamily.Adults.Find(t => t.Id == Id).JobTitle = jobToView = new Job();
+            theFamily.Adults.Find(t => t.Id == Id).JobTittle = jobToView = new Job();
             await fileReader.UpdateFamilyAsync(theFamily);
         }
     }

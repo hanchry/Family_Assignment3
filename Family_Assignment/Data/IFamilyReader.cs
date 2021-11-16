@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
-using Models;
+using Model;
 
 namespace Family_Assignment.Data
 {

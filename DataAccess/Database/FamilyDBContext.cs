@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using Models;
+using Model;
 
-namespace DataAccess.DataAccess
+namespace DataAccess.Database
 {
     public class FamilyDBContext:DbContext
     {
-        public DbSet<Family> Course { get; set; }
+        public DbSet<Family> Families { get; set; }
+        
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

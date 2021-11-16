@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace Models
+namespace Model
 {
     public class Child :Person
     {

@@ -8,8 +8,9 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Models;
+using Model;
 using Newtonsoft.Json;
+
 namespace Family_Assignment.Data
 {
     public class UserReader : IUserReader

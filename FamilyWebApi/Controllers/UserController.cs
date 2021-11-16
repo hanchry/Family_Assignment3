@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Models;
+using Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Net.Http;
 using FamilyWebApi.Data;
 using Microsoft.AspNetCore.Authentication;
+using Model;
 
 namespace FamilyWebApi.Controllers
 {

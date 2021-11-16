@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Family_Assignment.Data;
 using Microsoft.AspNetCore.Components;
-using Models;
+using Model;
 
 namespace Family_Assignment.Pages
 {

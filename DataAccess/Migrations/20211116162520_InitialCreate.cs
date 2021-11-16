@@ -7,7 +7,7 @@ namespace DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Course",
+                name: "Family",
                 columns: table => new
                 {
                     StreetName = table.Column<string>(type: "TEXT", nullable: false),
@@ -15,7 +15,19 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Course", x => new { x.StreetName, x.HouseNumber });
+                    table.PrimaryKey("PK_Family", x => new { x.StreetName, x.HouseNumber });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Job",
+                columns: table => new
+                {
+                    JobTitle = table.Column<string>(type: "TEXT", nullable: false),
+                    Salary = table.Column<int>(type: "INTEGER", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Job", x => x.JobTitle);
                 });
 
             migrationBuilder.CreateTable(
@@ -39,10 +51,45 @@ namespace DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_Child", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Child_Course_FamilyStreetName_FamilyHouseNumber",
+                        name: "FK_Child_Family_FamilyStreetName_FamilyHouseNumber",
                         columns: x => new { x.FamilyStreetName, x.FamilyHouseNumber },
-                        principalTable: "Course",
+                        principalTable: "Family",
                         principalColumns: new[] { "StreetName", "HouseNumber" },
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Adult",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    JobTittleJobTitle = table.Column<string>(type: "TEXT", nullable: true),
+                    FamilyHouseNumber = table.Column<int>(type: "INTEGER", nullable: true),
+                    FamilyStreetName = table.Column<string>(type: "TEXT", nullable: true),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
+                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    HairColor = table.Column<string>(type: "TEXT", nullable: true),
+                    EyeColor = table.Column<string>(type: "TEXT", nullable: true),
+                    Age = table.Column<int>(type: "INTEGER", nullable: false),
+                    Weight = table.Column<float>(type: "REAL", nullable: false),
+                    Height = table.Column<int>(type: "INTEGER", nullable: false),
+                    Sex = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Adult", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Adult_Family_FamilyStreetName_FamilyHouseNumber",
+                        columns: x => new { x.FamilyStreetName, x.FamilyHouseNumber },
+                        principalTable: "Family",
+                        principalColumns: new[] { "StreetName", "HouseNumber" },
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Adult_Job_JobTittleJobTitle",
+                        column: x => x.JobTittleJobTitle,
+                        principalTable: "Job",
+                        principalColumn: "JobTitle",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -88,12 +135,22 @@ namespace DataAccess.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Pet_Course_FamilyStreetName_FamilyHouseNumber",
+                        name: "FK_Pet_Family_FamilyStreetName_FamilyHouseNumber",
                         columns: x => new { x.FamilyStreetName, x.FamilyHouseNumber },
-                        principalTable: "Course",
+                        principalTable: "Family",
                         principalColumns: new[] { "StreetName", "HouseNumber" },
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Adult_FamilyStreetName_FamilyHouseNumber",
+                table: "Adult",
+                columns: new[] { "FamilyStreetName", "FamilyHouseNumber" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Adult_JobTittleJobTitle",
+                table: "Adult",
+                column: "JobTittleJobTitle");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Child_FamilyStreetName_FamilyHouseNumber",
@@ -119,16 +176,22 @@ namespace DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Adult");
+
+            migrationBuilder.DropTable(
                 name: "Interest");
 
             migrationBuilder.DropTable(
                 name: "Pet");
 
             migrationBuilder.DropTable(
+                name: "Job");
+
+            migrationBuilder.DropTable(
                 name: "Child");
 
             migrationBuilder.DropTable(
-                name: "Course");
+                name: "Family");
         }
     }
 }

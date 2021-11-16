@@ -5,7 +5,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using FamilyWebApi.Data;
 using Microsoft.AspNetCore.Mvc;
-using Models;
+using Model;
+
 
 namespace FamilyWebApi.Controllers
 {

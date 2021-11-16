@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-using Models;
+using Model;
 
 namespace FamilyWebApi.Data
 {

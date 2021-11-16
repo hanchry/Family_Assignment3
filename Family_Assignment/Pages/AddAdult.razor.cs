@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Models;
+using Model;
 
 namespace Family_Assignment.Pages
 {
@@ -26,7 +26,7 @@ namespace Family_Assignment.Pages
 
         private async Task AddNewAdult()
         {
-                adultToAdd.JobTitle = new Job();
+                adultToAdd.JobTittle = new Job();
                 adultToAdd.Id = GetNewId();
                 Family forUpdate = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
                 forUpdate.Adults.Add(adultToAdd);

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Models;
+using Model;
 
 namespace FamilyWebApi.Data
 {

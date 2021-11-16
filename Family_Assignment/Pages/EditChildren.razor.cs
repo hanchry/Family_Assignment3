@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using Models;
+using Model;
 
 namespace Family_Assignment.Pages
 {
