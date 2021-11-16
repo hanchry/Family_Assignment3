@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using DataAccess.Database;
 using FamilyWebApi.Data;
 using Microsoft.AspNetCore.Mvc;
 using Model;
@@ -16,9 +18,12 @@ namespace FamilyWebApi.Controllers
     {
         private IFamilyReader familyReader;
 
+        private FamilyDBContext familyDbContext;
+
         public FamilyController()
         {
             familyReader = new FileReader();
+            familyDbContext = new FamilyDBContext();
         }
 
         [HttpGet]
@@ -26,7 +31,7 @@ namespace FamilyWebApi.Controllers
         {
             try
             {
-                IList<Family> families = await familyReader.GetAllFamiliesAsync();
+                IList<Family> families = familyDbContext.Families.ToList();
                 string familiesAsJson = JsonSerializer.Serialize(families);
                 return Ok(familiesAsJson);
             }
@@ -44,7 +49,7 @@ namespace FamilyWebApi.Controllers
             
             try
             {
-                Family family = await familyReader.GetFamilyAsync(streetName, houseNumber);
+                Family family = familyDbContext.Families.FirstOrDefault(f => f.StreetName.Equals(streetName) && f.HouseNumber == houseNumber);
                 string familiesAsJson = JsonSerializer.Serialize(family);
                 return Ok(familiesAsJson);
             }
