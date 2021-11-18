@@ -190,6 +190,19 @@ namespace DataAccess.Migrations
                     b.ToTable("Pet");
                 });
 
+            modelBuilder.Entity("Model.User", b =>
+                {
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("UserName");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Model.Adult", b =>
                 {
                     b.HasOne("Model.Job", "JobTittle")
