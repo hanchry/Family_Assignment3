@@ -6,6 +6,7 @@ namespace DataAccess.Database
     public class FamilyDBContext:DbContext
     {
         public DbSet<Family> Families { get; set; }
+        public DbSet<User> Users { get; set; }
         
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -16,7 +17,8 @@ namespace DataAccess.Database
         {
             modelBuilder.Entity<Family>()
                 .HasKey(c => new { c.StreetName, c.HouseNumber });
-            
+            modelBuilder.Entity<User>()
+                .HasKey(c => new { c.UserName });
         }
     }
 }

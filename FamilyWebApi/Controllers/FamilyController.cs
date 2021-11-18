@@ -18,12 +18,10 @@ namespace FamilyWebApi.Controllers
     {
         private IFamilyReader familyReader;
 
-        private FamilyDBContext familyDbContext;
 
-        public FamilyController()
+        public FamilyController(IFamilyReader familyReader)
         {
-            familyReader = new FileReader();
-            familyDbContext = new FamilyDBContext();
+            this.familyReader = familyReader;
         }
 
         [HttpGet]
@@ -31,7 +29,7 @@ namespace FamilyWebApi.Controllers
         {
             try
             {
-                IList<Family> families = familyDbContext.Families.ToList();
+                IList<Family> families = await familyReader.GetAllFamiliesAsync();
                 string familiesAsJson = JsonSerializer.Serialize(families);
                 return Ok(familiesAsJson);
             }
@@ -46,10 +44,9 @@ namespace FamilyWebApi.Controllers
         [Route("{streetName}/{houseNumber:int}")]
         public async Task<ActionResult<Family>> GetFamilyAsync(string streetName, int houseNumber)
         {
-            
             try
             {
-                Family family = familyDbContext.Families.FirstOrDefault(f => f.StreetName.Equals(streetName) && f.HouseNumber == houseNumber);
+                Family family = await familyReader.GetFamilyAsync(streetName, houseNumber);
                 string familiesAsJson = JsonSerializer.Serialize(family);
                 return Ok(familiesAsJson);
             }
@@ -84,7 +81,6 @@ namespace FamilyWebApi.Controllers
         {
             try
             {
-                Console.WriteLine("Post method add family");
                 Family familyAdded = await familyReader.AddFamilyAsync(family);
                 return Created($"/{familyAdded.StreetName} / {familyAdded.HouseNumber}", familyAdded);
             }
@@ -101,15 +97,11 @@ namespace FamilyWebApi.Controllers
         {
             try
             {
-                Console.WriteLine("updating family");
-                Adult adult1 = new Adult();
                 Family updatedFamily = await familyReader.UpdateFamilyAsync(family);
-
                 return Ok();
             }
             catch (Exception e)
             {
-                Console.WriteLine("catch");
                 Console.WriteLine(e);
                 return StatusCode(500, e.Message);
             }

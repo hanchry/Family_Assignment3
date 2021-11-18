@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataAccess.Database;
 using FamilyWebApi.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,8 +29,9 @@ namespace FamilyWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IFamilyReader, FileReader>();
-            services.AddScoped<IUserReader, UserReader>();
+            services.AddDbContext<FamilyDBContext>();
+            services.AddScoped<IFamilyReader, SqlFamilyService>();
+            services.AddScoped<IUserReader, SqlUserService>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "FamilyWebApi", Version = "v1"});
