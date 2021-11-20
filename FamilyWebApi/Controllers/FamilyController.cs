@@ -98,6 +98,7 @@ namespace FamilyWebApi.Controllers
             try
             {
                 Family updatedFamily = await familyReader.UpdateFamilyAsync(family);
+
                 return Ok();
             }
             catch (Exception e)

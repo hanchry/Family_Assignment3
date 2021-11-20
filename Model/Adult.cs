@@ -7,5 +7,6 @@ namespace Model
     {
         
         public Job JobTittle { get; set; }
+        
     }
 }

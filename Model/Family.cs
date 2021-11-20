@@ -7,9 +7,10 @@ namespace Model
 {
     [Table(name:"Family")]
     public class Family
-    {
+    {   [Required]
         [Key,Column( Order=0)]
         public string StreetName { get; set; }
+        [Required,Range(1, int.MaxValue, ErrorMessage = "Please enter house number")] 
         [Key,Column( Order=1)]
         public int HouseNumber { get; set; }
 

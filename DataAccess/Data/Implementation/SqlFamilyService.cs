@@ -43,9 +43,10 @@ namespace FamilyWebApi.Data
 
         public async Task<Family> UpdateFamilyAsync(Family family)
         {
-            Family familyToUpdate = await familyDbContext.Families.FirstAsync(t =>
+            Family familyToUpdate = await familyDbContext.Families.FirstOrDefaultAsync(t =>
                 t.StreetName.Equals(family.StreetName) && t.HouseNumber == family.HouseNumber);
             familyDbContext.Update(familyToUpdate);
+            
             return familyToUpdate;
         }
 
