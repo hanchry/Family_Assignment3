@@ -45,7 +45,7 @@ namespace FamilyWebApi.Data
         {
             Family familyToUpdate = await familyDbContext.Families.FirstOrDefaultAsync(t =>
                 t.StreetName.Equals(family.StreetName) && t.HouseNumber == family.HouseNumber);
-            familyDbContext.Update(familyToUpdate);
+            familyDbContext.Update(family);
             
             return familyToUpdate;
         }
