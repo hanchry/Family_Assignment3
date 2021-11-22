@@ -29,7 +29,7 @@ namespace Family_Assignment.Pages
             childToAdd.Id = GetNewId();
             Family forUpdate = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             forUpdate.Children.Add(childToAdd);
-            await fileReader.UpdateFamilyAsync(forUpdate);
+            await fileReader.AddChild(StreetName, HouseNumber, childToAdd);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
 

@@ -91,6 +91,15 @@ namespace FamilyWebApi.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("Child/{streetName}/{houseNumber}")]
+        public async Task<ActionResult<Child>> AddChild([FromRoute] string streetName, int houseNumber,[FromBody] Child childToAdd)
+        {
+            Console.WriteLine("a");
+            Console.WriteLine(streetName, houseNumber, childToAdd);
+            return await familyReader.AddChildAsync(streetName, houseNumber, childToAdd );
+        }
+
         [HttpPatch]
         [Route("{streetName}/{streetNumber:int}")]
         public async Task<ActionResult<Family>> UpdateFamily([FromBody] Family family)

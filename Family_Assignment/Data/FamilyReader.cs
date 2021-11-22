@@ -61,6 +61,15 @@ namespace Family_Assignment.Data
             }
         }
 
+        public async Task AddChild(string streetName, int houseNumber,
+            Child child)
+        {
+            Console.WriteLine(streetName,houseNumber,child);
+            string serializedAdult = JsonConvert.SerializeObject(child);
+            StringContent content = new StringContent(serializedAdult, Encoding.UTF8, "application/json");
+            await client.PostAsync($"{uri}/Family/Child/{streetName}/{houseNumber}", content);
+        }
+
         public async Task<Family> GetFamilyAsync(string streetName, int houseNumber)
         {
             HttpResponseMessage responseMessage = await client.GetAsync(uri + $"/Family/{streetName}/{houseNumber}");

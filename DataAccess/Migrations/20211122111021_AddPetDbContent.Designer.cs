@@ -3,14 +3,16 @@ using System;
 using DataAccess.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(FamilyDBContext))]
-    partial class FamilyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211122111021_AddPetDbContent")]
+    partial class AddPetDbContent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +66,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("FamilyStreetName", "FamilyHouseNumber");
 
-                    b.ToTable("Adults");
+                    b.ToTable("Adult");
                 });
 
             modelBuilder.Entity("Model.Child", b =>
@@ -110,7 +112,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("FamilyStreetName", "FamilyHouseNumber");
 
-                    b.ToTable("Children");
+                    b.ToTable("Child");
                 });
 
             modelBuilder.Entity("Model.Family", b =>
@@ -154,7 +156,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("JobTitle");
 
-                    b.ToTable("Jobs");
+                    b.ToTable("Job");
                 });
 
             modelBuilder.Entity("Model.Pet", b =>
