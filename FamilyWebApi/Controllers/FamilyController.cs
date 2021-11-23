@@ -56,24 +56,7 @@ namespace FamilyWebApi.Controllers
                 return StatusCode(500, e.Message);
             }
         }
-
-        [HttpDelete]
-        [Route("{streetName}/{houseNumber}")]
-        public async Task<ActionResult> DeleteFamily([FromRoute] string streetName, int houseNumber)
-        {
-            try
-            {
-                Console.WriteLine("Delete method add family");
-
-                await familyReader.RemoveFamilyAsync(streetName, houseNumber);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        
 
         [HttpPost]
         [Route("{newFamily}")]
@@ -95,9 +78,95 @@ namespace FamilyWebApi.Controllers
         [Route("Child/{streetName}/{houseNumber}")]
         public async Task<ActionResult<Child>> AddChild([FromRoute] string streetName, int houseNumber,[FromBody] Child childToAdd)
         {
-            Console.WriteLine("a");
-            Console.WriteLine(streetName, houseNumber, childToAdd);
-            return await familyReader.AddChildAsync(streetName, houseNumber, childToAdd );
+            try
+            {
+                Child child = await familyReader.AddChildAsync(streetName, houseNumber, childToAdd );
+                return Created($"/{streetName} / {houseNumber}", child);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        
+        [HttpPost]
+        [Route("PetFamily/{streetName}/{houseNumber}")]
+        public async Task<ActionResult<Pet>> AddPetFamily([FromRoute] string streetName, int houseNumber,[FromBody] Pet petToAdd)
+        {
+            try
+            {
+                Pet pet = await familyReader.AddPetToFamilyAsync(streetName, houseNumber, petToAdd );
+                return Created($"/{streetName}, {houseNumber}", pet);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);;
+            }
+        }
+        [HttpPost]
+        [Route("PetChild/{childId}")]
+        public async Task<ActionResult<Pet>> AddPetChild([FromRoute] int childId,[FromBody] Pet petToAdd)
+        {
+            try
+            {
+                Pet pet = await familyReader.AddPetToChildAsync(childId, petToAdd );
+                return Created($"/{childId}", pet);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500,e.Message);
+            }
+        }
+        
+        [HttpDelete]
+        [Route("{streetName}/{houseNumber}")]
+        public async Task<ActionResult> DeleteFamily([FromRoute] string streetName, int houseNumber)
+        {
+            try
+            {
+                Console.WriteLine("Delete method add family");
+
+                await familyReader.RemoveFamilyAsync(streetName, houseNumber);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        [HttpDelete]
+        [Route("Child/{Id}")]
+        public async Task<ActionResult> DeleteChild([FromRoute] int Id)
+        {
+            try
+            {
+                await familyReader.RemoveChildAsync(Id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        [HttpDelete]
+        [Route("Pet/{Id}")]
+        public async Task<ActionResult> DeletePet([FromRoute] int Id)
+        {
+            try
+            {
+                await familyReader.RemovePetAsync(Id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpPatch]

@@ -101,13 +101,13 @@ namespace Family_Assignment.Pages
         private async Task DeleteChildren(int Id)
         {
             updateFamily.Children.Remove(allChildren.First(t => t.Id == Id));
-            await fileReader.UpdateFamilyAsync(updateFamily);
+            await fileReader.RemoveChildAsync(Id);
         }
 
         private async Task DeletePet(int Id)
         {
             updateFamily.Pets.Remove(allPets.First(t => t.Id == Id));
-            await fileReader.UpdateFamilyAsync(updateFamily);
+            await fileReader.RemovePetAsync(Id);
         }
 
         private void NavigateToAddAdult()

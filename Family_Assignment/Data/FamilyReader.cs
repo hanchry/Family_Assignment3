@@ -61,13 +61,34 @@ namespace Family_Assignment.Data
             }
         }
 
-        public async Task AddChild(string streetName, int houseNumber,
-            Child child)
+        public async Task AddChildAsync(string streetName, int houseNumber, Child child)
         {
-            Console.WriteLine(streetName,houseNumber,child);
-            string serializedAdult = JsonConvert.SerializeObject(child);
-            StringContent content = new StringContent(serializedAdult, Encoding.UTF8, "application/json");
+            string serializedChild = JsonConvert.SerializeObject(child);
+            StringContent content = new StringContent(serializedChild, Encoding.UTF8, "application/json");
             await client.PostAsync($"{uri}/Family/Child/{streetName}/{houseNumber}", content);
+        }
+        public async Task AddChildPetAsync(int childId,
+            Pet pet)
+        {
+            string serializedPet = JsonConvert.SerializeObject(pet);
+            StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
+            await client.PostAsync($"{uri}/Family/PetChild/{childId}", content);
+        }
+        public async Task AddFamilyPetAsync(string streetName, int houseNumber, Pet pet)
+        {
+            string serializedPet = JsonConvert.SerializeObject(pet);
+            StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
+            await client.PostAsync($"{uri}/Family/PetFamily/{streetName}/{houseNumber}", content);
+        }
+        
+
+        public async Task RemoveChildAsync(int id)
+        {
+            await client.DeleteAsync($"{uri}/Family/Child/{id}");
+        }
+        public async Task RemovePetAsync(int id)
+        {
+            await client.DeleteAsync($"{uri}/Family/Pet/{id}");
         }
 
         public async Task<Family> GetFamilyAsync(string streetName, int houseNumber)

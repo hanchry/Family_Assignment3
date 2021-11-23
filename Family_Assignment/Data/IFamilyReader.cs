@@ -9,7 +9,13 @@ namespace Family_Assignment.Data
     {
         Task<IList<Family>> GetAllFamiliesAsync();
          Task AddFamilyAsync(Family family);
-         Task AddChild(string streetName, int houseNumber, Child adult);
+         Task AddChildAsync(string streetName, int houseNumber, Child adult);
+
+         Task AddChildPetAsync(int childId, Pet pet);
+         Task AddFamilyPetAsync(string streetName, int houseNumber, Pet pet);
+
+         Task RemovePetAsync(int id);
+         Task RemoveChildAsync(int id);
          Task RemoveFamilyAsync(Family family);
          Task UpdateFamilyAsync(Family family);
          Task<Family> GetFamilyAsync(string streetName, int houseNumber);

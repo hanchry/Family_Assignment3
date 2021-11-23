@@ -31,13 +31,41 @@ namespace FamilyWebApi.Data
             return newFamily.Entity;
         }
 
-        public async Task<Child> AddChildAsync(string streetName, int houseName, Child child)
+        public async Task<Child> AddChildAsync(string streetName, int houseNumber, Child child)
         {
-            Console.WriteLine(child);
-            familyDbContext.Families.FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseName).Children.Add(child);
+            familyDbContext.Families.FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Children.Add(child);
             familyDbContext.Children.Add(child);
             await familyDbContext.SaveChangesAsync();
             return child;
+        }
+
+        public async Task<Pet> AddPetToFamilyAsync(string streetName, int houseNumber, Pet pet)
+        {
+            familyDbContext.Families.FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Pets.Add(pet);
+            familyDbContext.Pets.Add(pet);
+            await familyDbContext.SaveChangesAsync();
+            return pet;
+        }
+
+        public async Task<Pet> AddPetToChildAsync(int childId, Pet pet)
+        {
+            familyDbContext.Children.FirstOrDefault(t => t.Id == childId).Pets.Add(pet);
+            familyDbContext.Pets.Add(pet);
+            await familyDbContext.SaveChangesAsync();
+            return pet;
+        }
+
+        public async Task RemovePetAsync(int id)
+        {
+            Pet petToDelete = familyDbContext.Pets.FirstOrDefault(t => t.Id == id);
+            familyDbContext.Pets.Remove(petToDelete);
+            await familyDbContext.SaveChangesAsync();
+        }
+        public async Task RemoveChildAsync(int id)
+        {
+            Child childToDelete = familyDbContext.Children.FirstOrDefault(t => t.Id == id);
+            familyDbContext.Children.Remove(childToDelete);
+            await familyDbContext.SaveChangesAsync();
         }
 
         public async Task RemoveFamilyAsync(string streetName, int houseNumber)
