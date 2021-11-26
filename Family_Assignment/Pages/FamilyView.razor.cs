@@ -20,7 +20,7 @@ namespace Family_Assignment.Pages
         private IList<Pet> allPets;
         private IList<Adult> toShowAdults;
         private IList<Child> toShowChildren;
-        
+
         private string filterBy;
 
         private string? filterArgument;
@@ -31,21 +31,21 @@ namespace Family_Assignment.Pages
         {
             updateFamily = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             allAdults = updateFamily.Adults;
-            allChildren =updateFamily.Children;
-            allPets =updateFamily.Pets;
+            allChildren = updateFamily.Children;
+            allPets = updateFamily.Pets;
             toShowAdults = allAdults;
             toShowChildren = allChildren;
         }
-        
+
         private void FilterBy(ChangeEventArgs eventArgs)
         {
             filterBy = eventArgs.Value.ToString();
         }
-        
+
         private void FilterArg(ChangeEventArgs eventArgs, String typeOfObject)
         {
             filterArgument = eventArgs.Value.ToString();
-            
+
 
             if (typeOfObject.Equals("Adult"))
             {
@@ -55,7 +55,6 @@ namespace Family_Assignment.Pages
             {
                 ExecuteFilteringChildren();
             }
-            
         }
 
         private void ExecuteFilteringAdults()
@@ -71,9 +70,9 @@ namespace Family_Assignment.Pages
                 case "LastName":
                     toShowAdults = allAdults.Where(t => t.LastName.Contains(filterArgument)).ToList();
                     break;
-                
             }
         }
+
         private void ExecuteFilteringChildren()
         {
             switch (filterBy)
@@ -87,15 +86,14 @@ namespace Family_Assignment.Pages
                 case "LastName":
                     toShowChildren = allChildren.Where(t => t.LastName.Contains(filterArgument)).ToList();
                     break;
-                
             }
         }
-        
+
 
         private async Task DeleteAdult(int Id)
         {
             updateFamily.Adults.Remove(allAdults.First(t => t.Id == Id));
-            await fileReader.UpdateFamilyAsync(updateFamily);
+            await fileReader.RemoveAdultAsync(Id);
         }
 
         private async Task DeleteChildren(int Id)

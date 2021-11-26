@@ -28,15 +28,14 @@ namespace Family_Assignment.Pages
 
         public async Task DeletePet(Pet pet)
         {
-            
             updateFamily.Children.Find(x => x.Id == childToView.Id)?.Pets.Remove(pet);
-            await fileReader.UpdateFamilyAsync(updateFamily);
+            await fileReader.RemovePetAsync(pet.Id);
         }
 
-        public async Task DeleteInterests(Interest interest)
+        public async Task DeleteInterests(Interest interestToRemove)
         {
-            updateFamily.Children.First(x => x.Id == IdOfChild).Interests.Remove(interest);
-            await fileReader.UpdateFamilyAsync(updateFamily);
+            updateFamily.Children.First(x => x.Id == IdOfChild).Interests.Remove(interestToRemove);
+            await fileReader.RemoveChildInterestAsync(interestToRemove.Id);
         }
 
         public void NavigateToAddPet()

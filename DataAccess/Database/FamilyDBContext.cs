@@ -9,6 +9,7 @@ namespace DataAccess.Database
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Adult> Adults { get; set; }
         public DbSet<Child> Children { get; set; }
+        public DbSet<Interest> Interest { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<User> Users { get; set; }
         

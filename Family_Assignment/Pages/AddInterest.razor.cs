@@ -4,15 +4,15 @@ using Model;
 
 namespace Family_Assignment.Pages
 {
-    public partial class AddInterest:ComponentBase
+    public partial class AddInterest : ComponentBase
     {
         [Parameter] public string StreetName { get; set; }
         [Parameter] public int HouseNumber { get; set; }
         [Parameter] public int IdOfChild { get; set; }
-        
+
         private Interest interestToAdd;
         private Family family;
-        
+
         protected override async Task OnInitializedAsync()
         {
             interestToAdd = new Interest();
@@ -20,9 +20,9 @@ namespace Family_Assignment.Pages
         }
 
         private async Task AddNewInterest()
-        {   ////edit it 
+        {
             family.Children.Find(t => t.Id == IdOfChild).Interests.Add(interestToAdd);
-            await fileReader.UpdateFamilyAsync(family);
+            await fileReader.AddChildInterestAsync(interestToAdd.Id, interestToAdd);
             NavMgr.NavigateTo($"ChildView/{StreetName}/{HouseNumber}/{IdOfChild}");
         }
     }

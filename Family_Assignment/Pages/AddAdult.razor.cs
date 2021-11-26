@@ -26,33 +26,13 @@ namespace Family_Assignment.Pages
 
         private async Task AddNewAdult()
         {
-                adultToAdd.JobTittle = new Job();
-                adultToAdd.Id = GetNewId();
-                Family forUpdate = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
-                forUpdate.Adults.Add(adultToAdd);
-                await fileReader.UpdateFamilyAsync(forUpdate);
-                NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
-                
+            adultToAdd.JobTittle = new Job();
+            Family forUpdate = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
+            forUpdate.Adults.Add(adultToAdd);
+            await fileReader.UpdateFamilyAsync(forUpdate);
+            await fileReader.AddAdultAsync(StreetName, HouseNumber, adultToAdd);
+            NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
-
-        private int GetNewId()
-        {
-            int result = allAdults.Count + 1;
-            int check = 1;
-            foreach (Adult x in allAdults)
-            {
-                if (check == x.Id)
-                {
-                    check++;
-                }
-                else
-                {
-                    result = check;
-                    check++;
-                }
-            }
-
-            return result;
-        }
+        
     }
 }

@@ -33,28 +33,34 @@ namespace FamilyWebApi.Data
 
         public async Task<Child> AddChildAsync(string streetName, int houseNumber, Child child)
         {
-            familyDbContext.Families.FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Children.Add(child);
+            familyDbContext.Families
+                .FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Children
+                .Add(child);
             familyDbContext.Children.Add(child);
             await familyDbContext.SaveChangesAsync();
             return child;
         }
-        
+
         public async Task<Adult> AddAdultAsync(string streetName, int houseNumber, Adult adult)
         {
-            familyDbContext.Families.FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Adults.Add(adult);
+            familyDbContext.Families
+                .FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Adults.Add(adult);
             familyDbContext.Adults.Add(adult);
             await familyDbContext.SaveChangesAsync();
             return adult;
         }
+
         public async Task RemoveAdultAsync(int id)
         {
             Adult adultToDelete = familyDbContext.Adults.FirstOrDefault(t => t.Id == id);
             familyDbContext.Adults.Remove(adultToDelete);
             await familyDbContext.SaveChangesAsync();
         }
+
         public async Task<Pet> AddPetToFamilyAsync(string streetName, int houseNumber, Pet pet)
         {
-            familyDbContext.Families.FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Pets.Add(pet);
+            familyDbContext.Families
+                .FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Pets.Add(pet);
             familyDbContext.Pets.Add(pet);
             await familyDbContext.SaveChangesAsync();
             return pet;
@@ -68,12 +74,28 @@ namespace FamilyWebApi.Data
             return pet;
         }
 
+        public async Task<Interest> AddInterestAsync(int childId, Interest interest)
+        {
+            familyDbContext.Children.FirstOrDefault(t => t.Id == childId).Interests.Add(interest);
+            familyDbContext.Interest.Add(interest);
+            await familyDbContext.SaveChangesAsync();
+            return interest;
+        }
+
         public async Task RemovePetAsync(int id)
         {
             Pet petToDelete = familyDbContext.Pets.FirstOrDefault(t => t.Id == id);
             familyDbContext.Pets.Remove(petToDelete);
             await familyDbContext.SaveChangesAsync();
         }
+
+        public async Task RemoveInterestAsync(int id)
+        {
+            Interest interestToDelete = familyDbContext.Interest.FirstOrDefault(t => t.Id == id);
+            familyDbContext.Interest.Remove(interestToDelete);
+            await familyDbContext.SaveChangesAsync();
+        }
+
         public async Task RemoveChildAsync(int id)
         {
             Child childToDelete = familyDbContext.Children.FirstOrDefault(t => t.Id == id);
@@ -98,7 +120,8 @@ namespace FamilyWebApi.Data
             //     t.StreetName.Equals(family.StreetName) && t.HouseNumber == family.HouseNumber);
             // familyDbContext.Update(family);
 
-            Family familyToDelete = familyDbContext.Families.FirstOrDefault(t => t.HouseNumber == family.HouseNumber && t.StreetName.Equals(family.StreetName));
+            Family familyToDelete = familyDbContext.Families.FirstOrDefault(t =>
+                t.HouseNumber == family.HouseNumber && t.StreetName.Equals(family.StreetName));
             familyDbContext.Families.Remove(familyToDelete);
             await familyDbContext.Families.AddAsync(family);
             familyDbContext.SaveChanges();
@@ -107,8 +130,9 @@ namespace FamilyWebApi.Data
 
         public async Task<Family> GetFamilyAsync(string streetName, int houseNumber)
         {
-            Family familyToReturn = await familyDbContext.Families.Include("Adults").Include("Children").Include("Pets").FirstAsync(t =>
-                t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber);
+            Family familyToReturn = await familyDbContext.Families.Include("Adults").Include("Children").Include("Pets")
+                .FirstAsync(t =>
+                    t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber);
             return familyToReturn;
         }
     }

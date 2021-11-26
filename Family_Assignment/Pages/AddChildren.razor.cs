@@ -26,31 +26,11 @@ namespace Family_Assignment.Pages
         {
             childToAdd.Interests = new List<Interest>();
             childToAdd.Pets = new List<Pet>();
-            childToAdd.Id = GetNewId();
             Family forUpdate = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             forUpdate.Children.Add(childToAdd);
             await fileReader.AddChildAsync(StreetName, HouseNumber, childToAdd);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
-
-        private int GetNewId()
-        {
-            int result = allChildren.Count + 1;
-            int check = 1;
-            foreach (Child x in allChildren)
-            {
-                if (check == x.Id)
-                {
-                    check++;
-                }
-                else
-                {
-                    result = check;
-                    check++;
-                }
-            }
-
-            return result;
-        }
+        
     }
 }

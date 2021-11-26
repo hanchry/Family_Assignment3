@@ -50,9 +50,8 @@ namespace Family_Assignment.Data
             {
                 string serializedFamily = JsonConvert.SerializeObject(family);
                 StringContent content = new StringContent(serializedFamily, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PatchAsync($"{uri}/Family/{family.StreetName}/{family.HouseNumber}", content);
-                
-                
+                HttpResponseMessage response =
+                    await client.PatchAsync($"{uri}/Family/{family.StreetName}/{family.HouseNumber}", content);
             }
             catch (Exception e)
             {
@@ -67,6 +66,14 @@ namespace Family_Assignment.Data
             StringContent content = new StringContent(serializedChild, Encoding.UTF8, "application/json");
             await client.PostAsync($"{uri}/Family/Child/{streetName}/{houseNumber}", content);
         }
+
+        public async Task AddAdultAsync(string streetName, int houseNumber, Adult adult)
+        {
+            string serializedAdult = JsonConvert.SerializeObject(adult);
+            StringContent content = new StringContent(serializedAdult, Encoding.UTF8, "application/json");
+            await client.PostAsync($"{uri}/Family/Adult/{streetName}/{houseNumber}", content);
+        }
+
         public async Task AddChildPetAsync(int childId,
             Pet pet)
         {
@@ -74,18 +81,38 @@ namespace Family_Assignment.Data
             StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
             await client.PostAsync($"{uri}/Family/PetChild/{childId}", content);
         }
+
         public async Task AddFamilyPetAsync(string streetName, int houseNumber, Pet pet)
         {
             string serializedPet = JsonConvert.SerializeObject(pet);
             StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
             await client.PostAsync($"{uri}/Family/PetFamily/{streetName}/{houseNumber}", content);
         }
-        
+
+        public async Task AddChildInterestAsync(int interestId,
+            Interest interest)
+        {
+            string serializedInterest = JsonConvert.SerializeObject(interest);
+            StringContent content = new StringContent(serializedInterest, Encoding.UTF8, "application/json");
+            await client.PostAsync($"{uri}/Family/Child/Interest/{interestId}", content);
+        }
+
 
         public async Task RemoveChildAsync(int id)
         {
             await client.DeleteAsync($"{uri}/Family/Child/{id}");
         }
+
+        public async Task RemoveChildInterestAsync(int id)
+        {
+            await client.DeleteAsync($"{uri}/Family/Child/Interest/{id}");
+        }
+
+        public async Task RemoveAdultAsync(int id)
+        {
+            await client.DeleteAsync($"{uri}/Family/Adult/{id}");
+        }
+
         public async Task RemovePetAsync(int id)
         {
             await client.DeleteAsync($"{uri}/Family/Pet/{id}");
