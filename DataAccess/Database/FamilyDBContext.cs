@@ -15,8 +15,8 @@ namespace DataAccess.Database
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlite("Data source = C:/Users/nicol/RiderProjects/Family_Assignment3/DataAccess/Family.db");
-            optionsBuilder.UseSqlite("Data source = C:/Users/hanch/Desktop/school/Assigments/DNP1/Family_Assigment3/DataAccess/Family.db");
+            optionsBuilder.UseSqlite("Data source = C:/Users/nicol/RiderProjects/Family_Assignment3/DataAccess/Family.db");
+            //optionsBuilder.UseSqlite("Data source = C:/Users/hanch/Desktop/school/Assigments/DNP1/Family_Assigment3/DataAccess/Family.db");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

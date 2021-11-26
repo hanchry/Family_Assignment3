@@ -38,7 +38,20 @@ namespace FamilyWebApi.Data
             await familyDbContext.SaveChangesAsync();
             return child;
         }
-
+        
+        public async Task<Adult> AddAdultAsync(string streetName, int houseNumber, Adult adult)
+        {
+            familyDbContext.Families.FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Adults.Add(adult);
+            familyDbContext.Adults.Add(adult);
+            await familyDbContext.SaveChangesAsync();
+            return adult;
+        }
+        public async Task RemoveAdultAsync(int id)
+        {
+            Adult adultToDelete = familyDbContext.Adults.FirstOrDefault(t => t.Id == id);
+            familyDbContext.Adults.Remove(adultToDelete);
+            await familyDbContext.SaveChangesAsync();
+        }
         public async Task<Pet> AddPetToFamilyAsync(string streetName, int houseNumber, Pet pet)
         {
             familyDbContext.Families.FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Pets.Add(pet);
