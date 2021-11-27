@@ -20,11 +20,11 @@ namespace Family_Assignment.Data.Implementation
             client = new HttpClient(clientHandler);
         }
 
-        public async Task AddInterestAsync(int interestId, Interest interest)
+        public async Task AddInterestAsync(int childId, Interest interest)
         {
             string serializedInterest = JsonConvert.SerializeObject(interest);
             StringContent content = new StringContent(serializedInterest, Encoding.UTF8, "application/json");
-            await client.PostAsync($"{uri}/Family/Child/Interest/{interestId}", content);
+            await client.PostAsync($"{uri}/Family/Child/Interest/{childId}", content);
         }
 
         public async Task RemoveInterestAsync(int id)

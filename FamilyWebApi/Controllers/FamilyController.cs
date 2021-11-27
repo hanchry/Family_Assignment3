@@ -74,22 +74,22 @@ namespace FamilyWebApi.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("Child/{streetName}/{houseNumber}")]
-        public async Task<ActionResult<Child>> AddChild([FromRoute] string streetName, int houseNumber,
-            [FromBody] Child childToAdd)
-        {
-            try
-            {
-                Child child = await familyReader.AddChildAsync(streetName, houseNumber, childToAdd);
-                return Created($"/{streetName} / {houseNumber}", child);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        // [HttpPost]
+        // [Route("Child/{streetName}/{houseNumber}")]
+        // public async Task<ActionResult<Child>> AddChild([FromRoute] string streetName, int houseNumber,
+        //     [FromBody] Child childToAdd)
+        // {
+        //     try
+        //     {
+        //         Child child = await familyReader.AddChildAsync(streetName, houseNumber, childToAdd);
+        //         return Created($"/{streetName} / {houseNumber}", child);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
 
         // [HttpPost]
         // [Route("Adult/{streetName}/{houseNumber}")]
@@ -108,70 +108,70 @@ namespace FamilyWebApi.Controllers
         //     }
         // }
 
-        [HttpPost]
-        [Route("PetFamily/{streetName}/{houseNumber}")]
-        public async Task<ActionResult<Pet>> AddPetFamily([FromRoute] string streetName, int houseNumber,
-            [FromBody] Pet petToAdd)
-        {
-            try
-            {
-                Pet pet = await familyReader.AddPetToFamilyAsync(streetName, houseNumber, petToAdd);
-                return Created($"/{streetName}, {houseNumber}", pet);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-                ;
-            }
-        }
+        // [HttpPost]
+        // [Route("PetFamily/{streetName}/{houseNumber}")]
+        // public async Task<ActionResult<Pet>> AddPetFamily([FromRoute] string streetName, int houseNumber,
+        //     [FromBody] Pet petToAdd)
+        // {
+        //     try
+        //     {
+        //         Pet pet = await familyReader.AddPetToFamilyAsync(streetName, houseNumber, petToAdd);
+        //         return Created($"/{streetName}, {houseNumber}", pet);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //         ;
+        //     }
+        // }
 
-        [HttpPost]
-        [Route("PetChild/{childId}")]
-        public async Task<ActionResult<Pet>> AddPetChild([FromRoute] int childId, [FromBody] Pet petToAdd)
-        {
-            try
-            {
-                Pet pet = await familyReader.AddPetToChildAsync(childId, petToAdd);
-                return Created($"/{childId}", pet);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        // [HttpPost]
+        // [Route("PetChild/{childId}")]
+        // public async Task<ActionResult<Pet>> AddPetChild([FromRoute] int childId, [FromBody] Pet petToAdd)
+        // {
+        //     try
+        //     {
+        //         Pet pet = await familyReader.AddPetToChildAsync(childId, petToAdd);
+        //         return Created($"/{childId}", pet);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
 
-        [HttpPost]
-        [Route("Child/Interest/{childId}")]
-        public async Task<ActionResult<Job>> AddChildInterest([FromRoute] int childId, [FromBody] Interest interestToAdd)
-        {
-            try
-            {
-                Interest interest = await familyReader.AddInterestAsync(childId, interestToAdd);
-                return Created($"/{childId}", interest);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
-        [HttpPost]
-        [Route("Adult/AddJob/{childId}")]
-        public async Task<ActionResult<Job>> AddAdultJob([FromRoute] int adultId, [FromBody] Job jobToAdd)
-        {
-            try
-            {
-                Job job = await familyReader.AddJobAsync(adultId, jobToAdd);
-                return Created($"/{adultId}", job);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        // [HttpPost]
+        // [Route("Child/Interest/{childId}")]
+        // public async Task<ActionResult<Job>> AddInterest([FromRoute] int childId, [FromBody] Interest interestToAdd)
+        // {
+        //     try
+        //     {
+        //         Interest interest = await familyReader.AddInterestAsync(childId, interestToAdd);
+        //         return Created($"/{childId}", interest);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
+        // [HttpPost]
+        // [Route("Adult/AddJob/{childId}")]
+        // public async Task<ActionResult<Job>> AddJob([FromRoute] int adultId, [FromBody] Job jobToAdd)
+        // {
+        //     try
+        //     {
+        //         Job job = await familyReader.AddJobAsync(adultId, jobToAdd);
+        //         return Created($"/{adultId}", job);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
 
         [HttpDelete]
         [Route("{streetName}/{houseNumber}")]
@@ -207,68 +207,68 @@ namespace FamilyWebApi.Controllers
         //     }
         // }
 
-        [HttpDelete]
-        [Route("Child/Interest/{Id}")]
-        public async Task<ActionResult> DeleteInterest([FromRoute] int Id)
-        {
-            try
-            {
-                await familyReader.RemoveInterestAsync(Id);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        // [HttpDelete]
+        // [Route("Child/Interest/{Id}")]
+        // public async Task<ActionResult> DeleteInterest([FromRoute] int Id)
+        // {
+        //     try
+        //     {
+        //         await familyReader.RemoveInterestAsync(Id);
+        //         return Ok();
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
 
-        [HttpDelete]
-        [Route("Adult/Job/{Id}")]
-        public async Task<ActionResult> DeleteJob([FromRoute] int Id)
-        {
-            try
-            {
-                await familyReader.RemoveJobAsync(Id);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
-        [HttpDelete]
-        [Route("Child/{Id}")]
-        public async Task<ActionResult> DeleteChild([FromRoute] int Id)
-        {
-            try
-            {
-                await familyReader.RemoveChildAsync(Id);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        // [HttpDelete]
+        // [Route("Adult/Job/{Id}")]
+        // public async Task<ActionResult> DeleteJob([FromRoute] int Id)
+        // {
+        //     try
+        //     {
+        //         await familyReader.RemoveJobAsync(Id);
+        //         return Ok();
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
+        // [HttpDelete]
+        // [Route("Child/{Id}")]
+        // public async Task<ActionResult> DeleteChild([FromRoute] int Id)
+        // {
+        //     try
+        //     {
+        //         await familyReader.RemoveChildAsync(Id);
+        //         return Ok();
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
 
-        [HttpDelete]
-        [Route("Pet/{Id}")]
-        public async Task<ActionResult> DeletePet([FromRoute] int Id)
-        {
-            try
-            {
-                await familyReader.RemovePetAsync(Id);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        // [HttpDelete]
+        // [Route("Pet/{Id}")]
+        // public async Task<ActionResult> DeletePet([FromRoute] int Id)
+        // {
+        //     try
+        //     {
+        //         await familyReader.RemovePetAsync(Id);
+        //         return Ok();
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
 
         [HttpPatch]
         [Route("{streetName}/{streetNumber:int}")]

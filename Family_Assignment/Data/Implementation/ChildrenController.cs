@@ -26,9 +26,9 @@ namespace Family_Assignment.Data.Implementation
             await client.PostAsync($"{uri}/Family/Child/{streetName}/{houseNumber}", content);
         }
 
-        public Task RemoveChildAsync(int id)
+        public async Task RemoveChildAsync(int id)
         {
-            throw new System.NotImplementedException();
+            await client.DeleteAsync($"{uri}/Family/Child/{id}");
         }
     }
 }

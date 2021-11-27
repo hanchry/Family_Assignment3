@@ -24,14 +24,14 @@ namespace Family_Assignment.Data.Implementation
         {
             string serializedPet = JsonConvert.SerializeObject(pet);
             StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
-            await client.PostAsync($"{uri}/Family/PetChild/{childId}", content);
+            await client.PostAsync($"{uri}/Family/Child/Pet/{childId}", content);
         }
 
         public async Task AddFamilyPetAsync(string streetName, int houseNumber, Pet pet)
         {
             string serializedPet = JsonConvert.SerializeObject(pet);
             StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
-            await client.PostAsync($"{uri}/Family/PetFamily/{streetName}/{houseNumber}", content);
+            await client.PostAsync($"{uri}/Family/Pet/{streetName}/{houseNumber}", content);
         }
 
         public async Task RemovePetAsync(int id)

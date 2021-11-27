@@ -33,6 +33,10 @@ namespace FamilyWebApi
             services.AddScoped<IFamilyReader, SqlFamilyService>();
             services.AddScoped<IUserReader, SqlUserService>();
             services.AddScoped<IAdultReader, SqlAdultService>();
+            services.AddScoped<IChildrenReader, SqlChildrenService>();
+            services.AddScoped<IPetReader, SqlPetService>();
+            services.AddScoped<IInterestReader, SqlInterestService>();
+            services.AddScoped<IJobReader, SqlJobService>();
 
             services.AddSwaggerGen(c =>
             {
