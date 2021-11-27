@@ -17,6 +17,7 @@ namespace Family_Assignment.Pages
 
         protected override async Task OnInitializedAsync()
         {
+            // may have some bugs 
             family = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             adultToView = family.Adults.Find(t => t.Id == Id);
             newJob = new Job();
@@ -28,14 +29,15 @@ namespace Family_Assignment.Pages
             jobToView = newJob;
             Family theFamily = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             theFamily.Adults.Find(t => t.Id == Id).JobTittle = newJob;
-            await fileReader.UpdateFamilyAsync(theFamily);
+            await jobController.AddJobAsync(adultToView.Id, newJob);
         }
 
         private async Task DeleteJob()
         {
+            //may also have some bugs
             Family theFamily = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
-            theFamily.Adults.Find(t => t.Id == Id).JobTittle = jobToView = new Job();
-            await fileReader.UpdateFamilyAsync(theFamily);
+            Job job = theFamily.Adults.Find(t => t.Id == Id).JobTittle = jobToView = new Job();
+            await jobController.RemoveJobAsync(job.Id);
         }
     }
 }

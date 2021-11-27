@@ -32,6 +32,8 @@ namespace FamilyWebApi
             services.AddDbContext<FamilyDBContext>();
             services.AddScoped<IFamilyReader, SqlFamilyService>();
             services.AddScoped<IUserReader, SqlUserService>();
+            services.AddScoped<IAdultReader, SqlAdultService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "FamilyWebApi", Version = "v1"});

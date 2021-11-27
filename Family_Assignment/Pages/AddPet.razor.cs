@@ -34,7 +34,7 @@ namespace Family_Assignment.Pages
         {
                 petToAdd.Id = GetNewId(petsInChild);
                 family.Children.First(t => t.Id == IdOfChild).Pets.Add(petToAdd);
-                await fileReader.AddChildPetAsync(IdOfChild, petToAdd);
+                await petController.AddChildPetAsync(IdOfChild, petToAdd);
                 NavMgr.NavigateTo($"ChildView/{StreetName}/{HouseNumber}/{IdOfChild}");
         }
 
@@ -43,7 +43,7 @@ namespace Family_Assignment.Pages
             petToAdd.Id = GetNewId(petsInFamily);
             family = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             family.Pets.Add(petToAdd);
-            await fileReader.AddFamilyPetAsync(StreetName,HouseNumber,petToAdd);
+            await petController.AddFamilyPetAsync(StreetName,HouseNumber,petToAdd);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
 

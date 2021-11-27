@@ -1,6 +1,7 @@
 ﻿@page "/AddInterest/{StreetName}/{HouseNumber:int}/{IdOfChild:int}"
 @using Family_Assignment.Data
 @inject IFamilyReader fileReader
+@inject IInterestController interestController
 @inject NavigationManager NavMgr
 
 @if (interestToAdd == null)

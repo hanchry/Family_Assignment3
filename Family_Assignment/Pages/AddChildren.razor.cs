@@ -28,7 +28,7 @@ namespace Family_Assignment.Pages
             childToAdd.Pets = new List<Pet>();
             Family forUpdate = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             forUpdate.Children.Add(childToAdd);
-            await fileReader.AddChildAsync(StreetName, HouseNumber, childToAdd);
+            await childrenController.AddChildAsync(StreetName, HouseNumber, childToAdd);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
         

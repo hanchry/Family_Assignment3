@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Family_Assignment.Authentication;
 using Family_Assignment.Data;
+using Family_Assignment.Data.Implementation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -34,6 +35,11 @@ namespace Family_Assignment
             services.AddSyncfusionBlazor();
             services.AddSingleton<IFamilyReader, FamilyReader>();
             services.AddScoped<IUserReader, UserReader>();
+            services.AddScoped<IAdultController, AdultController>();
+            services.AddScoped<IChildrenController, ChildrenController>();
+            services.AddScoped<IJobController, JobController>();
+            services.AddScoped<IInterestController, InterestController>();
+            services.AddScoped<IPetController, PetController>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddAuthorization(options =>
             {

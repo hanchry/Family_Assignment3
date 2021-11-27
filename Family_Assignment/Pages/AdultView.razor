@@ -1,6 +1,7 @@
 ﻿@page "/AdultView/{StreetName}/{HouseNumber:int}/{Id:int}"
 @using Family_Assignment.Data
 @inject IFamilyReader fileReader
+@inject IJobController jobController
 @inject NavigationManager NavMgr
 
 @if (adultToView == null)

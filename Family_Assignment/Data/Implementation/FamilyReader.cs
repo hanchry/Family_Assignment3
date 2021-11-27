@@ -97,6 +97,18 @@ namespace Family_Assignment.Data
             await client.PostAsync($"{uri}/Family/Child/Interest/{interestId}", content);
         }
 
+        public async Task AddJobAsync(int adultId, Job job)
+        {
+            string serializedJob = JsonConvert.SerializeObject(job);
+            StringContent content = new StringContent(serializedJob, Encoding.UTF8, "application/json");
+            await client.PostAsync($"{uri}/Family/Adult/AddJob/{adultId}", content);
+        }
+        
+
+        public async Task RemoveJobAsync(int id)
+        {
+            await client.DeleteAsync($"{uri}/Family/Adult/RemoveJob{id}");
+        }
 
         public async Task RemoveChildAsync(int id)
         {

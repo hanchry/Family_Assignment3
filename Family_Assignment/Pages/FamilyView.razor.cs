@@ -93,19 +93,19 @@ namespace Family_Assignment.Pages
         private async Task DeleteAdult(int Id)
         {
             updateFamily.Adults.Remove(allAdults.First(t => t.Id == Id));
-            await fileReader.RemoveAdultAsync(Id);
+            await adultController.RemoveAdultAsync(Id);
         }
 
         private async Task DeleteChildren(int Id)
         {
             updateFamily.Children.Remove(allChildren.First(t => t.Id == Id));
-            await fileReader.RemoveChildAsync(Id);
+            await childrenController.RemoveChildAsync(Id);
         }
 
         private async Task DeletePet(int Id)
         {
             updateFamily.Pets.Remove(allPets.First(t => t.Id == Id));
-            await fileReader.RemovePetAsync(Id);
+            await petController.RemovePetAsync(Id);
         }
 
         private void NavigateToAddAdult()

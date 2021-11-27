@@ -91,22 +91,22 @@ namespace FamilyWebApi.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("Adult/{streetName}/{houseNumber}")]
-        public async Task<ActionResult<Adult>> AddAdult([FromRoute] string streetName, int houseNumber,
-            [FromBody] Adult adultToAdd)
-        {
-            try
-            {
-                Adult adult = await familyReader.AddAdultAsync(streetName, houseNumber, adultToAdd);
-                return Created($"/{streetName} / {houseNumber}", adult);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        // [HttpPost]
+        // [Route("Adult/{streetName}/{houseNumber}")]
+        // public async Task<ActionResult<Adult>> AddAdult([FromRoute] string streetName, int houseNumber,
+        //     [FromBody] Adult adultToAdd)
+        // {
+        //     try
+        //     {
+        //         Adult adult = await familyReader.AddAdultAsync(streetName, houseNumber, adultToAdd);
+        //         return Created($"/{streetName} / {houseNumber}", adult);
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
 
         [HttpPost]
         [Route("PetFamily/{streetName}/{houseNumber}")]
@@ -144,12 +144,27 @@ namespace FamilyWebApi.Controllers
 
         [HttpPost]
         [Route("Child/Interest/{childId}")]
-        public async Task<ActionResult<Pet>> AddChildInterest([FromRoute] int childId, [FromBody] Interest interestToAdd)
+        public async Task<ActionResult<Job>> AddChildInterest([FromRoute] int childId, [FromBody] Interest interestToAdd)
         {
             try
             {
                 Interest interest = await familyReader.AddInterestAsync(childId, interestToAdd);
                 return Created($"/{childId}", interest);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        [HttpPost]
+        [Route("Adult/AddJob/{childId}")]
+        public async Task<ActionResult<Job>> AddAdultJob([FromRoute] int adultId, [FromBody] Job jobToAdd)
+        {
+            try
+            {
+                Job job = await familyReader.AddJobAsync(adultId, jobToAdd);
+                return Created($"/{adultId}", job);
             }
             catch (Exception e)
             {
@@ -176,21 +191,21 @@ namespace FamilyWebApi.Controllers
             }
         }
 
-        [HttpDelete]
-        [Route("Adult/{Id}")]
-        public async Task<ActionResult> DeleteAdult([FromRoute] int Id)
-        {
-            try
-            {
-                await familyReader.RemoveAdultAsync(Id);
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return StatusCode(500, e.Message);
-            }
-        }
+        // [HttpDelete]
+        // [Route("Adult/{Id}")]
+        // public async Task<ActionResult> DeleteAdult([FromRoute] int Id)
+        // {
+        //     try
+        //     {
+        //         await familyReader.RemoveAdultAsync(Id);
+        //         return Ok();
+        //     }
+        //     catch (Exception e)
+        //     {
+        //         Console.WriteLine(e);
+        //         return StatusCode(500, e.Message);
+        //     }
+        // }
 
         [HttpDelete]
         [Route("Child/Interest/{Id}")]
@@ -208,6 +223,21 @@ namespace FamilyWebApi.Controllers
             }
         }
 
+        [HttpDelete]
+        [Route("Adult/Job/{Id}")]
+        public async Task<ActionResult> DeleteJob([FromRoute] int Id)
+        {
+            try
+            {
+                await familyReader.RemoveJobAsync(Id);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
         [HttpDelete]
         [Route("Child/{Id}")]
         public async Task<ActionResult> DeleteChild([FromRoute] int Id)

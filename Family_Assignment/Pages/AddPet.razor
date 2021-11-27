@@ -1,6 +1,7 @@
 ﻿@page "/AddPet/{StreetName}/{HouseNumber:int}/{IdOfChild:int}"
 @using Family_Assignment.Data
 @inject IFamilyReader fileReader
+@inject IPetController petController
 @inject NavigationManager NavMgr
 @* <h3>AddPet</h3> *@
 

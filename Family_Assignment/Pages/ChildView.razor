@@ -2,6 +2,8 @@
 @using Family_Assignment.Data
 @using Model
 @inject IFamilyReader fileReader
+@inject IPetController petController
+@inject IInterestController interestController
 @inject NavigationManager NavMgr
 
 @if (childToView == null)

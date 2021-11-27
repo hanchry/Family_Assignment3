@@ -26,11 +26,10 @@ namespace Family_Assignment.Pages
 
         private async Task AddNewAdult()
         {
-            adultToAdd.JobTittle = new Job();
             Family forUpdate = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             forUpdate.Adults.Add(adultToAdd);
             await fileReader.UpdateFamilyAsync(forUpdate);
-            await fileReader.AddAdultAsync(StreetName, HouseNumber, adultToAdd);
+            await adultController.AddAdultAsync(StreetName, HouseNumber, adultToAdd);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
         

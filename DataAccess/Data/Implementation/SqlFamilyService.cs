@@ -21,7 +21,7 @@ namespace FamilyWebApi.Data
 
         public async Task<IList<Family>> GetAllFamiliesAsync()
         {
-            return await familyDbContext.Families.Include("Adults").Include("Children").Include("Pets").ToListAsync();
+            return await familyDbContext.Families.Include("Adults").Include("Jobs").Include("Children").Include("Interest").Include("Pets").ToListAsync();
         }
 
         public async Task<Family> AddFamilyAsync(Family family)
@@ -50,10 +50,25 @@ namespace FamilyWebApi.Data
             return adult;
         }
 
+        public async Task<Job> AddJobAsync(int childId, Job job)
+        {
+            familyDbContext.Adults.FirstOrDefault(t => t.Id == childId).JobTittle=job;
+            familyDbContext.Jobs.Add(job);
+            await familyDbContext.SaveChangesAsync();
+            return job;
+        }
+
         public async Task RemoveAdultAsync(int id)
         {
             Adult adultToDelete = familyDbContext.Adults.FirstOrDefault(t => t.Id == id);
             familyDbContext.Adults.Remove(adultToDelete);
+            await familyDbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveJobAsync(int id)
+        {
+            Job jobToDelete = familyDbContext.Jobs.FirstOrDefault(t => t.Id == id);
+            familyDbContext.Jobs.Remove(jobToDelete);
             await familyDbContext.SaveChangesAsync();
         }
 
