@@ -18,4 +18,10 @@
       <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Migrations\20211116162520_InitialCreate.Designer.cs" />
+      <Compile Remove="Migrations\FamilyDBContextModelSnapshot.cs" />
+      <Compile Remove="Migrations\20211116162520_InitialCreate.cs" />
+    </ItemGroup>
+
 </Project>
