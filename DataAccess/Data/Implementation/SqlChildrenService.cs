@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DataAccess.Database;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 namespace FamilyWebApi.Data
@@ -26,9 +28,21 @@ namespace FamilyWebApi.Data
 
         public async Task RemoveChildAsync(int id)
         {
-            Child childToDelete = familyDbContext.Children.FirstOrDefault(t => t.Id == id);
+            Child childToDelete = familyDbContext.Children.Include(t => t.Interests).Include(t => t.Pets).FirstOrDefault(t => t.Id == id);
             familyDbContext.Children.Remove(childToDelete);
             await familyDbContext.SaveChangesAsync();
+        }
+
+        public async Task<Child> UpdateChildAsync(Child child)
+        {
+            var entity = familyDbContext.Children.Include(t => t.Interests).Include(t => t.Pets).FirstOrDefault(t => t.Id == child.Id);
+            if (entity == null)
+            {
+                return null;
+            }
+            familyDbContext.Entry(entity).CurrentValues.SetValues(child);
+            await familyDbContext.SaveChangesAsync();
+            return child;
         }
     }
 }

@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using DataAccess.Database;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 namespace FamilyWebApi.Data
@@ -16,6 +19,8 @@ namespace FamilyWebApi.Data
 
         public async Task<Interest> AddInterestAsync(int childId, Interest interest)
         {
+            
+            familyDbContext.Children.FirstOrDefault(t => t.Id == childId).Interests = new List<Interest>();
             familyDbContext.Children.FirstOrDefault(t => t.Id == childId).Interests.Add(interest);
             familyDbContext.Interest.Add(interest);
             await familyDbContext.SaveChangesAsync();

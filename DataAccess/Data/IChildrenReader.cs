@@ -7,5 +7,6 @@ namespace FamilyWebApi.Data
     {
         Task<Child> AddChildAsync(string streetName, int houseNumber, Child child);
         Task RemoveChildAsync(int id);
+        Task<Child> UpdateChildAsync(Child child);
     }
 }

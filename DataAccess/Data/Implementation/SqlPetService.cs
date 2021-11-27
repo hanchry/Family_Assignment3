@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using DataAccess.Database;
 using Model;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+
 namespace FamilyWebApi.Data
 {
     public class SqlPetService : IPetReader
@@ -16,7 +18,7 @@ namespace FamilyWebApi.Data
 
         public async Task<Pet> AddPetToChildAsync(int childId, Pet pet)
         {
-            familyDbContext.Children.FirstOrDefault(t => t.Id == childId).Pets.Add(pet);
+            familyDbContext.Children.Include(t=>t.Pets).First(t => t.Id == childId).Pets.Add(pet);
             familyDbContext.Pets.Add(pet);
             await familyDbContext.SaveChangesAsync();
             return pet;

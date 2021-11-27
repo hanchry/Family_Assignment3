@@ -23,7 +23,7 @@ namespace Family_Assignment.Pages
         {
             Child update = familyToEdit.Children.Find(t => t.Id == IdOfChild);
             update = childToEdit;
-            await fileReader.UpdateFamilyAsync(familyToEdit);
+            await childrenController.UpdateChild(childToEdit);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
     }

@@ -1,6 +1,7 @@
 @page "/EditChildren/{StreetName}/{HouseNumber:int}/{IdOfChild:int}"
 @using Family_Assignment.Data
 @inject IFamilyReader fileReader
+@inject IChildrenController childrenController
 @inject NavigationManager NavMgr
 @* <h3>Edit Children: @Id</h3> *@
 

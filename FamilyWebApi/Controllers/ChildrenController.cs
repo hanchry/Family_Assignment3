@@ -55,6 +55,20 @@ namespace FamilyWebApi.Controllers
             }
         }
         
+        [HttpPatch]
+        public async Task<ActionResult<Family>> UpdateChild([FromBody] Child child)
+        {
+            try
+            {
+                await childrenReader.UpdateChildAsync(child);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
         
     }
 }

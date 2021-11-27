@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
@@ -22,8 +23,8 @@ namespace Family_Assignment.Data.Implementation
 
         public async Task AddInterestAsync(int childId, Interest interest)
         {
-            string serializedInterest = JsonConvert.SerializeObject(interest);
-            StringContent content = new StringContent(serializedInterest, Encoding.UTF8, "application/json");
+            string serializedPet = JsonConvert.SerializeObject(interest);
+            StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
             await client.PostAsync($"{uri}/Interest/{childId}", content);
         }
 
