@@ -18,6 +18,7 @@ namespace Family_Assignment.Data
          Task RemoveChildAsync(int id);
          Task RemoveFamilyAsync(Family family);
          Task UpdateFamilyAsync(Family family);
+         Task UpdateChildAsync(string streetName, int houseNumber, Child child);
          Task<Family> GetFamilyAsync(string streetName, int houseNumber);
     }
 }

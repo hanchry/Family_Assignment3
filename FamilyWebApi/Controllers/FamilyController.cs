@@ -170,13 +170,12 @@ namespace FamilyWebApi.Controllers
         }
 
         [HttpPatch]
-        [Route("{streetName}/{streetNumber:int}")]
-        public async Task<ActionResult<Family>> UpdateFamily([FromBody] Family family)
+        [Route("Child/{streetName}/{houseNumber}")]
+        public async Task<ActionResult<Family>> UpdateChild([FromRoute] string streetName, int houseNumber,[FromBody] Child child)
         {
             try
             {
-                Family updatedFamily = await familyReader.UpdateFamilyAsync(family);
-
+                await familyReader.UpdateChildAsync(streetName,houseNumber,child);
                 return Ok();
             }
             catch (Exception e)

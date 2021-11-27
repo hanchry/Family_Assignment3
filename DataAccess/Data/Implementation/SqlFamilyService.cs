@@ -21,7 +21,8 @@ namespace FamilyWebApi.Data
 
         public async Task<IList<Family>> GetAllFamiliesAsync()
         {
-            return await familyDbContext.Families.Include("Adults").Include("Children").Include("Pets").ToListAsync();
+             return await familyDbContext.Families.Include(f => f.Adults).ThenInclude(a => a.JobTittle).Include(f => f.Children).ThenInclude(c => c.Interests)
+                 .Include(f => f.Children).ThenInclude(c => c.Pets).Include("Pets").ToListAsync();
         }
 
         public async Task<Family> AddFamilyAsync(Family family)
@@ -79,6 +80,13 @@ namespace FamilyWebApi.Data
             }
         }
 
+        public async Task<Child> UpdateChildAsync(string streetName, int houseNumber,Child child)
+        {
+            RemoveChildAsync(child.Id);
+            AddChildAsync(streetName, houseNumber, child);
+            return child;
+        }
+
         public async Task<Family> UpdateFamilyAsync(Family family)
         {
             // Family familyToUpdate = await familyDbContext.Families.FirstOrDefaultAsync(t =>
@@ -94,7 +102,9 @@ namespace FamilyWebApi.Data
 
         public async Task<Family> GetFamilyAsync(string streetName, int houseNumber)
         {
-            Family familyToReturn = await familyDbContext.Families.Include("Adults").Include("Children").Include("Pets").FirstAsync(t =>
+            
+            Family familyToReturn = await familyDbContext.Families.Include(f => f.Adults).ThenInclude(a => a.JobTittle).Include(f => f.Children).ThenInclude(c => c.Interests)
+                .Include(f => f.Children).ThenInclude(c => c.Pets).Include("Pets").FirstAsync(t =>
                 t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber);
             return familyToReturn;
         }

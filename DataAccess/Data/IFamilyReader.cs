@@ -15,6 +15,7 @@ namespace FamilyWebApi.Data
         Task RemoveChildAsync(int id);
         Task RemovePetAsync(int id);
         Task RemoveFamilyAsync(string streetName,int houseNumber);
+        Task<Child> UpdateChildAsync(string streetName, int houseNumber,Child child);
         Task<Family> UpdateFamilyAsync(Family family);
         Task<Family> GetFamilyAsync(string streetName, int houseNumber);
     }

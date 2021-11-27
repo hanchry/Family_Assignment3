@@ -21,9 +21,7 @@ namespace Family_Assignment.Pages
 
         private async Task Update()
         {
-            Child update = familyToEdit.Children.Find(t => t.Id == IdOfChild);
-            update = childToEdit;
-            await fileReader.UpdateFamilyAsync(familyToEdit);
+            await fileReader.UpdateChildAsync(StreetName, HouseNumber,childToEdit);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
     }

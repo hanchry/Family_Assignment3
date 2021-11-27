@@ -90,6 +90,21 @@ namespace Family_Assignment.Data
         {
             await client.DeleteAsync($"{uri}/Family/Pet/{id}");
         }
+        
+        public async Task UpdateChildAsync(string streetName, int houseNumber, Child child)
+        {
+            try
+            {
+                string serializedFamily = JsonConvert.SerializeObject(child);
+                StringContent content = new StringContent(serializedFamily, Encoding.UTF8, "application/json");
+                HttpResponseMessage response = await client.PatchAsync($"{uri}/Family/Child/{streetName}/{houseNumber}", content);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
         public async Task<Family> GetFamilyAsync(string streetName, int houseNumber)
         {
