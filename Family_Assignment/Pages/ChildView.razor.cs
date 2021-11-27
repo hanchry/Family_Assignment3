@@ -30,7 +30,7 @@ namespace Family_Assignment.Pages
         {
             
             updateFamily.Children.Find(x => x.Id == childToView.Id)?.Pets.Remove(pet);
-            await fileReader.UpdateFamilyAsync(updateFamily);
+            await fileReader.RemovePetAsync(pet.Id);
         }
 
         public async Task DeleteInterests(Interest interest)
