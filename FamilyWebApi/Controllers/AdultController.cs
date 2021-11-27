@@ -19,14 +19,14 @@ namespace FamilyWebApi.Controllers
 
 
         [HttpPost]
-        [Route("Adult/{streetName}/{houseNumber}")]
+        [Route("{streetName}/{houseNumber}")]
         public async Task<ActionResult<Adult>> AddAdult([FromRoute] string streetName, int houseNumber,
             [FromBody] Adult adultToAdd)
         {
             try
             {
                 Adult adult = await adultReader.AddAdultAsync(streetName, houseNumber, adultToAdd);
-                return Created($"/{streetName} / {houseNumber}", adult);
+                return Created($"/{streetName}/{houseNumber}", adult);
             }
             catch (Exception e)
             {
@@ -36,7 +36,7 @@ namespace FamilyWebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("Adult/{Id}")]
+        [Route("{Id}")]
         public async Task<ActionResult> DeleteAdult([FromRoute] int Id)
         {
             try

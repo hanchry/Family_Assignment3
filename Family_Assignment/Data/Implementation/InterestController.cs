@@ -24,12 +24,12 @@ namespace Family_Assignment.Data.Implementation
         {
             string serializedInterest = JsonConvert.SerializeObject(interest);
             StringContent content = new StringContent(serializedInterest, Encoding.UTF8, "application/json");
-            await client.PostAsync($"{uri}/Family/Child/Interest/{childId}", content);
+            await client.PostAsync($"{uri}/Interest/{childId}", content);
         }
 
         public async Task RemoveInterestAsync(int id)
         {
-            await client.DeleteAsync($"{uri}/Family/Child/Interest/{id}");
+            await client.DeleteAsync($"{uri}/Interest/{id}");
         }
     }
 }

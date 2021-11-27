@@ -18,7 +18,7 @@ namespace FamilyWebApi.Controllers
         }
 
         [HttpPost]
-        [Route("Child/Interest/{childId}")]
+        [Route("{childId}")]
         public async Task<ActionResult<Job>> AddInterest([FromRoute] int childId, [FromBody] Interest interestToAdd)
         {
             try
@@ -34,7 +34,7 @@ namespace FamilyWebApi.Controllers
         }
         
         [HttpDelete]
-        [Route("Child/Interest/{Id}")]
+        [Route("{Id}")]
         public async Task<ActionResult> DeleteInterest([FromRoute] int Id)
         {
             try

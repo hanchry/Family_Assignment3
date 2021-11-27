@@ -21,7 +21,8 @@ namespace FamilyWebApi.Data
 
         public async Task<IList<Family>> GetAllFamiliesAsync()
         {
-            return await familyDbContext.Families.Include(t => t.Adults).ThenInclude(t => t.JobTittle)
+            return await familyDbContext.Families.Include(s => s.Pets).Include(t => t.Adults)
+                .ThenInclude(t => t.JobTittle)
                 .Include(t => t.Children).ThenInclude(t => t.Pets).Include(t => t.Children)
                 .ThenInclude(t => t.Interests).ToListAsync();
         }
@@ -43,18 +44,18 @@ namespace FamilyWebApi.Data
             return child;
         }
 
-        public async Task<Adult> AddAdultAsync(string streetName, int houseNumber, Adult adult)
-        {
-            familyDbContext.Families
-                .FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Adults.Add(adult);
-            familyDbContext.Adults.Add(adult);
-            await familyDbContext.SaveChangesAsync();
-            return adult;
-        }
+        // public async Task<Adult> AddAdultAsync(string streetName, int houseNumber, Adult adult)
+        // {
+        //     familyDbContext.Families
+        //         .FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Adults.Add(adult);
+        //     familyDbContext.Adults.Add(adult);
+        //     await familyDbContext.SaveChangesAsync();
+        //     return adult;
+        // }
 
         public async Task<Job> AddJobAsync(int childId, Job job)
         {
-            familyDbContext.Adults.FirstOrDefault(t => t.Id == childId).JobTittle=job;
+            familyDbContext.Adults.FirstOrDefault(t => t.Id == childId).JobTittle = job;
             familyDbContext.Jobs.Add(job);
             await familyDbContext.SaveChangesAsync();
             return job;
@@ -141,13 +142,14 @@ namespace FamilyWebApi.Data
                 t.HouseNumber == family.HouseNumber && t.StreetName.Equals(family.StreetName));
             familyDbContext.Families.Remove(familyToDelete);
             await familyDbContext.Families.AddAsync(family);
-            familyDbContext.SaveChanges();
+            await familyDbContext.SaveChangesAsync();
             return family;
         }
 
         public async Task<Family> GetFamilyAsync(string streetName, int houseNumber)
         {
-            Family familyToReturn = await familyDbContext.Families.Include(t => t.Adults).ThenInclude(t => t.JobTittle)
+            Family familyToReturn = await familyDbContext.Families.Include(s => s.Pets).Include(t => t.Adults)
+                .ThenInclude(t => t.JobTittle)
                 .Include(t => t.Children).ThenInclude(t => t.Pets).Include(t => t.Children)
                 .ThenInclude(t => t.Interests)
                 .FirstAsync(t =>

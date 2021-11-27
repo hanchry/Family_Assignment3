@@ -18,7 +18,7 @@ namespace FamilyWebApi.Controllers
         }
 
         [HttpPost]
-        [Route("Child/Pet/{childId}")]
+        [Route("Child/{childId}")]
         public async Task<ActionResult<Pet>> AddChildPet([FromRoute] int childId, [FromBody] Pet petToAdd)
         {
             try
@@ -34,7 +34,7 @@ namespace FamilyWebApi.Controllers
         }
 
         [HttpPost]
-        [Route("Pet/{streetName}/{houseNumber}")]
+        [Route("Family/{streetName}/{houseNumber}")]
         public async Task<ActionResult<Pet>> AddPetFamily([FromRoute] string streetName, int houseNumber,
             [FromBody] Pet petToAdd)
         {
@@ -52,7 +52,7 @@ namespace FamilyWebApi.Controllers
         }
 
         [HttpDelete]
-        [Route("Pet/{Id}")]
+        [Route("{Id}")]
         public async Task<ActionResult> DeletePet([FromRoute] int Id)
         {
             try
