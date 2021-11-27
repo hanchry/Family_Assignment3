@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Model;
 
@@ -12,16 +13,19 @@ namespace Family_Assignment.Pages
 
         private Adult adultToView;
         private Job jobToView;
-        private Job newJob;
         private Family family;
+        private Job newJob;
 
         protected override async Task OnInitializedAsync()
         {
             // may have some bugs 
             family = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             adultToView = family.Adults.Find(t => t.Id == Id);
-            newJob = new Job();
             jobToView = adultToView.JobTittle;
+            
+
+
+
         }
 
         private async Task AddJob()

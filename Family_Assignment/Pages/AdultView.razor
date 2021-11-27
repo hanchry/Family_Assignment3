@@ -68,8 +68,7 @@ else
                     <h3 class="text-green-700">Job</h3>
                 </div>
 
-                @if (jobToView.JobTitle.Equals("no tittle"))
-                {
+                
                     <EditForm Model="@newJob" OnValidSubmit="@AddJob">
                         <div class="flex items-center mb-5">
                             <!--         tip - here neede inline-block , but why? -->
@@ -93,7 +92,6 @@ else
                             <button class="py-3 px-8 bg-green-400 text-white font-bold" @onclick="@AddJob">Submit</button>
                         </div>
                     </EditForm>
-                }
                 else
                 {
                     <table class="min-w-max w-full table-auto shadow-xl">
@@ -107,7 +105,7 @@ else
                             </th>
                             <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    Salery
+                                    Salary
                                 </div>
                             </th>
                             <th class="py-3 px-6 text-left ">
