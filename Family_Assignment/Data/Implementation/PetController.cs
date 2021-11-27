@@ -1,4 +1,5 @@
-﻿using System.Net.Http;
+﻿using System;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
@@ -24,19 +25,19 @@ namespace Family_Assignment.Data.Implementation
         {
             string serializedPet = JsonConvert.SerializeObject(pet);
             StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
-            await client.PostAsync($"{uri}/Family/Child/Pet/{childId}", content);
+            await client.PostAsync($"{uri}/Pet/Child/{childId}", content);
         }
 
         public async Task AddFamilyPetAsync(string streetName, int houseNumber, Pet pet)
         {
             string serializedPet = JsonConvert.SerializeObject(pet);
             StringContent content = new StringContent(serializedPet, Encoding.UTF8, "application/json");
-            await client.PostAsync($"{uri}/Family/Pet/{streetName}/{houseNumber}", content);
+            await client.PostAsync($"{uri}/Pet/Family/{streetName}/{houseNumber}", content);
         }
 
         public async Task RemovePetAsync(int id)
         {
-            await client.DeleteAsync($"{uri}/Family/Pet/{id}");
+            await client.DeleteAsync($"{uri}/Pet/{id}");
 
         }
     }

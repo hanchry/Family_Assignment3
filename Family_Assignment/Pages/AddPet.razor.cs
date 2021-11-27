@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Family_Assignment.Data;
+using Family_Assignment.Data.Implementation;
 using Microsoft.AspNetCore.Components;
 using Model;
 
@@ -32,39 +33,19 @@ namespace Family_Assignment.Pages
 
         private async Task AddNewPetToChild()
         {
-                petToAdd.Id = GetNewId(petsInChild);
-                family.Children.First(t => t.Id == IdOfChild).Pets.Add(petToAdd);
+            family.Children.First(t => t.Id == IdOfChild).Pets.Add(petToAdd);
                 await petController.AddChildPetAsync(IdOfChild, petToAdd);
                 NavMgr.NavigateTo($"ChildView/{StreetName}/{HouseNumber}/{IdOfChild}");
         }
 
         private async Task AddNewPetToFamily()
         {
-            petToAdd.Id = GetNewId(petsInFamily);
+            
             family = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
             family.Pets.Add(petToAdd);
             await petController.AddFamilyPetAsync(StreetName,HouseNumber,petToAdd);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
-
-        private int GetNewId(IList<Pet> list)
-        {
-            int result = list.Count + 1;
-            int check = 1;
-            foreach (Pet x in list)
-            {
-                if (check == x.Id)
-                {
-                    check++;
-                }
-                else
-                {
-                    result = check;
-                    check++;
-                }
-            }
-
-            return result;
-        }
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using DataAccess.Database;
 using Model;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace FamilyWebApi.Data
 
         public async Task<Pet> AddPetToFamilyAsync(string streetName, int houseNumber, Pet pet)
         {
+            Console.WriteLine("database");
             familyDbContext.Families
                 .FirstOrDefault(t => t.StreetName.Equals(streetName) && t.HouseNumber == houseNumber).Pets.Add(pet);
             familyDbContext.Pets.Add(pet);
