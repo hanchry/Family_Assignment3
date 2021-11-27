@@ -38,7 +38,6 @@ namespace FamilyWebApi.Controllers
         public async Task<ActionResult<Pet>> AddPetFamily([FromRoute] string streetName, int houseNumber,
             [FromBody] Pet petToAdd)
         {
-            Console.WriteLine("Pet"); 
             try
             {
                 Pet pet = await petReader.AddPetToFamilyAsync(streetName, houseNumber, petToAdd);
