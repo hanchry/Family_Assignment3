@@ -7,5 +7,6 @@ namespace Family_Assignment.Data
     {
         Task AddAdultAsync(string streetName, int houseNumber, Adult adult);
         Task RemoveAdultAsync(int id);
+        Task UpdateAdultAsync(Adult adult);
     }
 }

@@ -50,5 +50,21 @@ namespace FamilyWebApi.Controllers
                 return StatusCode(500, e.Message);
             }
         }
+        
+        [HttpPatch]
+        public async Task<ActionResult<Family>> UpdateAdult([FromBody] Adult adult)
+        {
+            try
+            {
+                await adultReader.UpdateAdultAsync(adult);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return StatusCode(500, e.Message);
+            }
+        }
+        
     }
 }

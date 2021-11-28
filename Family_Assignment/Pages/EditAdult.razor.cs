@@ -8,7 +8,7 @@ namespace Family_Assignment.Pages
 {
     public partial class EditAdult : ComponentBase
     {
-        [Parameter] public int Id { set; get; }
+        [Parameter] public int IdOfAdult { set; get; }
         [Parameter] public string StreetName { get; set; }
         [Parameter] public int HouseNumber { get; set; }
 
@@ -20,7 +20,7 @@ namespace Family_Assignment.Pages
             try
             {
                 familyToEdit = await fileReader.GetFamilyAsync(StreetName, HouseNumber);
-                adultToEdit = familyToEdit.Adults.Find(t => t.Id == Id);
+                adultToEdit = familyToEdit.Adults.Find(t => t.Id == IdOfAdult);
             }
             catch (Exception e)
             {
@@ -30,12 +30,9 @@ namespace Family_Assignment.Pages
 
         private async Task Update()
         {
-            Adult updateAdult = familyToEdit.Adults.Find(t => t.Id == adultToEdit.Id);
+            Adult updateAdult = familyToEdit.Adults.Find(t => t.Id == IdOfAdult);
             updateAdult = adultToEdit;
-            await fileReader.UpdateFamilyAsync(familyToEdit);
-           
-           
-
+            await adultReader.UpdateAdultAsync(adultToEdit);
             NavMgr.NavigateTo($"FamilyView/{StreetName}/{HouseNumber}");
         }
     }

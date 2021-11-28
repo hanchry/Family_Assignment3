@@ -1,0 +1,70 @@
+﻿@page "/AddJob/{StreetName}/{HouseNumber:int}/{IdOfAdult:int}"
+@using Family_Assignment.Data
+@inject IFamilyReader fileReader
+@inject IJobController jobController
+@inject IAdultController adultController
+@inject NavigationManager NavMgr
+
+@* <div class="flex items-center justify-center py-3 text-xl font-black"> *@
+@*     <h3 class="text-green-700">AddJob</h3> *@
+@* </div> *@
+@* <EditForm Model="@jobController" OnValidSubmit="@AddJobAsync"> *@
+@*     <div class="flex items-center mb-5"> *@
+@*         <!--         tip - here neede inline-block , but why? --> *@
+@*         <label for="name" class="inline-block w-20 mr-6 text-right  *@
+@*                                      font-bold text-gray-600">Title</label> *@
+@*         <br/> <InputText class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400  *@
+@*                                                                            text-gray-600 placeholder-gray-400 *@
+@*                                                                            outline-none" @bind-Value="jobToUpdate.JobTitle"/> *@
+@*     </div> *@
+@*     <div class="flex items-center mb-5"> *@
+@*         <!--         tip - here neede inline-block , but why? --> *@
+@*         <label for="name" class="inline-block w-20 mr-6 text-right  *@
+@*                                            font-bold text-gray-600">Salary</label> *@
+@*         <br/> <InputNumber class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400  *@
+@*                                                                                  text-gray-600 placeholder-gray-400 *@
+@*                                                                                  outline-none" @bind-Value="jobToUpdate.Salary"/> *@
+@*     </div> *@
+@*     <div class="text-center text-red-700"> *@
+@*         <DataAnnotationsValidator/> <ValidationSummary/> *@
+@*         <button type="submit" class="py-3 px-8 bg-green-400 text-white font-bold">Submit</button> *@
+@*     </div> *@
+@* </EditForm> *@
+
+<EditForm Model="@jobToUpdate" OnValidSubmit="@AddJobAsync">
+    <div class="bg-green-100 py-32 min-h-screen px-0">
+        <!--   tip; mx-auto -- jagab ilusti keskele  -->
+        <div class="bg-white p-10 md:w-3/4 lg:w-1/2 mx-auto shadow-xl">
+
+            <div class="flex items-center justify-center">
+
+                <h3 class="inline-block w-40 text-right 
+                                                                         font-bold text-green-700">AddJob</h3>
+            </div>
+
+            <div class="flex items-center mb-5">
+                <!--         tip - here neede inline-block , but why? -->
+                <label for="name" class="inline-block w-20 mr-6 text-right 
+                                           font-bold text-gray-600">Title</label>
+                <br/> <InputText class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
+                                                                                 text-gray-600 placeholder-gray-400
+                                                                                 outline-none" @bind-Value="jobToUpdate.JobTitle"/>
+            </div>
+            <div class="flex items-center mb-5">
+                <!--         tip - here neede inline-block , but why? -->
+                <label for="name" class="inline-block w-20 mr-6 text-right
+                                            font-bold text-gray-600">Salary</label>
+                <br/> <InputNumber class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400
+                                                                                  text-gray-600 placeholder-gray-400
+                                                                                  outline-none" @bind-Value="jobToUpdate.Salary"/>
+            </div>
+
+
+            <div class="text-right text-red-700">
+                <DataAnnotationsValidator/> <ValidationSummary/>
+                <button type="submit" class="py-3 px-8 bg-green-400 text-white font-bold">Submit</button>
+            </div>
+
+        </div>
+    </div>
+</EditForm>

@@ -32,5 +32,12 @@ namespace Family_Assignment.Data.Implementation
         {
             await client.DeleteAsync($"{uri}/Adult/{id}");
         }
+        public async Task UpdateAdultAsync(Adult adult)
+        {
+            string serializedAdult = JsonConvert.SerializeObject(adult);
+            StringContent content = new StringContent(serializedAdult, Encoding.UTF8, "application/json");
+            await client.PatchAsync($"{uri}/Adult", content);
+        }
+        
     }
 }

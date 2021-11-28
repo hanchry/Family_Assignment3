@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using DataAccess.Database;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 namespace FamilyWebApi.Data
@@ -29,5 +30,18 @@ namespace FamilyWebApi.Data
             familyDbContext.Adults.Remove(adultToDelete);
             await familyDbContext.SaveChangesAsync();
         }
+        
+        public async Task<Adult> UpdateAdultAsync(Adult adult)
+        {
+            var entity = familyDbContext.Adults.Include(t => t.JobTittle).FirstOrDefault(t => t.Id == adult.Id);
+            if (entity == null)
+            {
+                return null;
+            }
+            familyDbContext.Entry(entity).CurrentValues.SetValues(adult);
+            await familyDbContext.SaveChangesAsync();
+            return adult;
+        }
+        
     }
 }

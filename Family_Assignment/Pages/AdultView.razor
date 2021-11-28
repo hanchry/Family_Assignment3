@@ -1,8 +1,10 @@
-﻿@page "/AdultView/{StreetName}/{HouseNumber:int}/{Id:int}"
+﻿@page "/AdultView/{StreetName}/{HouseNumber:int}/{IdOfAdult:int}"
 @using Family_Assignment.Data
+@using Model
 @inject IFamilyReader fileReader
 @inject IJobController jobController
 @inject NavigationManager NavMgr
+@inject IModalService _modalService
 
 @if (adultToView == null)
 {
@@ -60,54 +62,35 @@ else
 
             </div>
         </div>
+
         <div class=" bg-white md:w-3/4 lg:w-1/4 mx-auto flex items-center justify-center shadow-xl">
-
-
             <div class="bg-white rounded my-6">
-                <div class="flex items-center justify-center py-3 text-xl font-black">
-                    <h3 class="text-green-700">Job</h3>
-                </div>
+                <div class="bg-white rounded my-6">
+                    <div class="flex items-center justify-center py-3 text-xl font-black">
+                        <h3 class="px-2 text-green-700">Job</h3>
+                        <a class="px-2" @onclick="@(() => NavigateToAddJob())">
+                            <button
+                                class="p-0 w-12 h-12 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
 
-                @if (jobToView.JobTitle.Equals("no tittle"))
-                {
-                    <EditForm Model="@newJob" OnValidSubmit="@AddJob">
-                        <div class="flex items-center mb-5">
-                            <!--         tip - here neede inline-block , but why? -->
-                            <label for="name" class="inline-block w-20 mr-6 text-right 
-                                     font-bold text-gray-600">Tittle</label>
-                            <br/> <InputText class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
-                                                                           text-gray-600 placeholder-gray-400
-                                                                           outline-none" @bind-Value="newJob.JobTitle"/>
-                        </div>
-                        <div class="flex items-center mb-5">
-                            <!--         tip - here neede inline-block , but why? -->
-                            <label for="name" class="inline-block w-20 mr-6 text-right 
-                                           font-bold text-gray-600">Salery</label>
-                            <br/> <InputNumber class="flex-1 py-2 border-b-2 border-gray-400 focus:border-green-400 
-                                                                                 text-gray-600 placeholder-gray-400
-                                                                                 outline-none" @bind-Value="newJob.Salary"/>
-                        </div>
+                                <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                </svg>
 
-                        <div class="text-right text-red-700">
-                            <DataAnnotationsValidator/> <ValidationSummary/>
-                            <button class="py-3 px-8 bg-green-400 text-white font-bold" @onclick="@AddJob">Submit</button>
-                        </div>
-                    </EditForm>
-                }
-                else
-                {
+                            </button>
+                        </a>
+                    </div>
                     <table class="min-w-max w-full table-auto shadow-xl">
                         <thead>
                         <tr class="bg-gradient-to-l from-blue-100 to-green-100 text-gray-800 uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left ">
 
                                 <div class="flex items-center justify-center">
-                                    Tittle
+                                    Type
                                 </div>
                             </th>
                             <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    Salery
+                                    Description
                                 </div>
                             </th>
                             <th class="py-3 px-6 text-left ">
@@ -122,37 +105,35 @@ else
                         <tr class="border-b border-gray-200 hover:bg-gray-100">
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center justify-center">
-                                    <span class="font-medium">@jobToView.JobTitle</span>
+                                    <span class="font-medium">@adultToView.JobTittle.JobTitle</span>
                                 </div>
                             </td>
                             <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center justify-center">
-                                    <span class="font-medium">@jobToView.Salary</span>
+                                    <span class="font-medium">@adultToView.JobTittle.Salary</span>
                                 </div>
                             </td>
                             <td class="py-3 px-6 text-center">
                                 <div class="flex item-center justify-center">
-                                    <a @onclick="() => DeleteJob()">
-                                        <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
 
+                                    <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                                        <a @onclick="() => DeleteJob()">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                             </svg>
+                                        </a>
+                                    </div>
 
-                                        </div>
-                                    </a>
                                 </div>
                             </td>
                         </tr>
-
                         </tbody>
                     </table>
-                }
 
+                </div>
             </div>
-
-
         </div>
+
+
     </div>
 }
-

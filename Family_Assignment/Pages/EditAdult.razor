@@ -1,6 +1,9 @@
-@page "/EditAdult/{StreetName}/{HouseNumber:int}/{Id:int}"
+@page "/EditAdult/{StreetName}/{HouseNumber:int}/{IdOfAdult:int}"
+@using FamilyWebApi.Data
+@using IFamilyReader = Family_Assignment.Data.IFamilyReader
 @using Family_Assignment.Data
 @inject IFamilyReader fileReader
+@inject IAdultController adultReader
 @inject NavigationManager NavMgr
 
 
@@ -19,7 +22,7 @@ else
     <div class="flex items-center justify-center">
              
              <h3 class="inline-block w-40 text-right 
-                                                 font-bold text-green-700">Edit Adult: @Id</h3> 
+                                                 font-bold text-green-700">Edit Adult: @IdOfAdult</h3> 
           </div>
 
       <!--       flex - asjad korvuti, nb! flex-1 - element kogu ylejaanud laius -->

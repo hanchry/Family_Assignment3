@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Blazored.Modal;
 using Family_Assignment.Authentication;
 using Family_Assignment.Data;
 using Family_Assignment.Data.Implementation;
@@ -41,6 +42,8 @@ namespace Family_Assignment
             services.AddScoped<IInterestController, InterestController>();
             services.AddScoped<IPetController, PetController>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            services.AddBlazoredModal();
+           
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("MustBeLoggedIn", a => a.RequireAuthenticatedUser());

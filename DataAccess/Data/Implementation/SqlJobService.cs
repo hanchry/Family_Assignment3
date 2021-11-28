@@ -2,6 +2,7 @@
 using DataAccess.Database;
 using Model;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace FamilyWebApi.Data
 {
@@ -14,9 +15,9 @@ namespace FamilyWebApi.Data
             this.familyDbContext = familyDbContext;
         }
 
-        public async Task<Job> AddJobAsync(int childId, Job job)
+        public async Task<Job> AddJobAsync(int adultId, Job job)
         {
-            familyDbContext.Adults.FirstOrDefault(t => t.Id == childId).JobTittle = job;
+            familyDbContext.Adults.Include(s=>s.JobTittle).First(t => t.Id == adultId).JobTittle = job;
             familyDbContext.Jobs.Add(job);
             await familyDbContext.SaveChangesAsync();
             return job;

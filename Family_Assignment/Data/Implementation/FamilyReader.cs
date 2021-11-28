@@ -135,6 +135,7 @@ namespace Family_Assignment.Data
             HttpResponseMessage responseMessage = await client.GetAsync(uri + $"/Family/{streetName}/{houseNumber}");
             String reply = await responseMessage.Content.ReadAsStringAsync();
             Family family = JsonConvert.DeserializeObject<Family>(reply);
+           // Console.WriteLine(family.Adults[0].JobTittle.JobTitle);
             return family;
         }
     }
