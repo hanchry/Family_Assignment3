@@ -12,430 +12,435 @@
 {
     <p>no family found</p>
 }
-else{
+else
+{
 @* <h4>Family</h4> *@
 
-<div class="overflow-x-auto">
-    <div class="min-w-screen flex items-center justify-center bg-white  overflow-hidden">
-        <div class="w-full lg:w-5/6">
-            <div class="bg-white rounded my-6">
-                <div class="flex items-center justify-center py-10 px-6 text-xl font-black">
-                    <h1 class="text-black">FamilyView</h1>
+    <div class="overflow-x-auto">
+        <div class="min-w-screen flex items-center justify-center bg-white  overflow-hidden">
+            <div class="w-full lg:w-5/6">
+                <div class="bg-white rounded my-6">
+                    <div class="flex items-center justify-center py-10 px-6 text-xl font-black">
+                        <h1 class="text-black">FamilyView</h1>
+                    </div>
+                    <table class="relative left-1/3 w-1/3 table-auto shadow-xl border-2 border-gray-200 border-opacity-50">
+
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <th class="py-3 px-6 text-left whitespace-nowrap ">
+                                <div class="flex items-center justify-center">
+                                    <span class="font-medium">StreetName</span>
+                                </div>
+                            </th>
+
+                            <td class="py-3 px-6 text-left whitespace-nowrap text-sm text-gray-700">
+                                <div class="flex items-center justify-center">
+                                    <span class="font-medium">@StreetName</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <th class="py-3 px-6 text-left whitespace-nowrap ">
+                                <div class="flex items-center justify-center">
+                                    <span class="font-medium">HouseNumber</span>
+                                </div>
+                            </th>
+
+                            <td class="py-3 px-6 text-left whitespace-nowrap text-sm text-gray-700">
+                                <div class="flex items-center justify-center">
+                                    <span class="font-medium">@HouseNumber</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <table class="relative left-1/3 w-1/3 table-auto shadow-xl border-2 border-gray-200 border-opacity-50">
-
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <th class="py-3 px-6 text-left whitespace-nowrap ">
-                            <div class="flex items-center justify-center">
-                                <span class="font-medium">StreetName</span>
-                            </div>
-                        </th>
-
-                        <td class="py-3 px-6 text-left whitespace-nowrap text-sm text-gray-700">
-                            <div class="flex items-center justify-center">
-                                <span class="font-medium">@StreetName</span>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                        <th class="py-3 px-6 text-left whitespace-nowrap ">
-                            <div class="flex items-center justify-center">
-                                <span class="font-medium">HouseNumber</span>
-                            </div>
-                        </th>
-
-                        <td class="py-3 px-6 text-left whitespace-nowrap text-sm text-gray-700">
-                            <div class="flex items-center justify-center">
-                                <span class="font-medium">@HouseNumber</span>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
             </div>
         </div>
     </div>
-</div>
 
 @* <h4>Adults</h4> *@
 
-<div class="overflow-x-auto">
-    <div class="min-w-screen flex items-center justify-center bg-white font-sans overflow-hidden">
-        <div class="w-full lg:w-5/6">
-            <div class="bg-white rounded my-6">
-                <div class=" text-l font-black">
-                    <h1 class="flex item-center justify-center text-xl text-black">Adults</h1>
-                    <div class="bg-white p-2 flex flex-row">
-                        <div class="relative inline-flex min-w-max w-full">
-                            <div>
-                                <select @onchange="@((arg) => FilterBy(arg))" class="border border-gray-300 rounded-full text-gray-600 h-12 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                                    <option>Choose filter</option>
-                                    <option>Id</option>
-                                    <option>FirstName</option>
-                                    <option>LastName</option>
-                                </select>
+    <div class="overflow-x-auto">
+        <div class="min-w-screen flex items-center justify-center bg-white font-sans overflow-hidden">
+            <div class="w-full lg:w-5/6">
+                <div class="bg-white rounded my-6">
+                    <div class=" text-l font-black">
+                        <h1 class="flex item-center justify-center text-xl text-black">Adults</h1>
+                        <div class="bg-white p-2 flex flex-row">
+                            <div class="relative inline-flex min-w-max w-full">
+                                <div>
+                                    <select @onchange="@((arg) => FilterBy(arg))" class="border border-gray-300 rounded-full text-gray-600 h-12 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                        <option>Choose filter</option>
+                                        <option>Id</option>
+                                        <option>FirstName</option>
+                                        <option>LastName</option>
+                                    </select>
+                                </div>
+                                <div class="ml-2 border-2 flex justify-between rounde-md rounded-md">
+                                    <input @oninput="@((arg) => FilterArg(arg, "Adult"))" class=" px-3 flex-grow outline-none text-gray-600 focus:text-blue-600" type="text" placeholder="Search Adult..."/>
+                                    <spa class="mt-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 hover:text-blue-400 transition duration-100 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                    </spa>
+                                </div>
                             </div>
-                            <div class="ml-2 border-2 flex justify-between rounde-md rounded-md">
-                                <input @oninput="@((arg) => FilterArg(arg, "Adult"))" class=" px-3 flex-grow outline-none text-gray-600 focus:text-blue-600" type="text" placeholder="Search Adult..."/>
-                                <spa class="mt-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 hover:text-blue-400 transition duration-100 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                    </svg>
-                                </spa>
+                            <div class="pr-1">
+                                <a @onclick="() => NavigateToAddAdult()">
+                                    <button
+                                        class="p-0 w-12 h-12 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+
+                                        <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
+                                            <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+                                                                                                                                                                                            C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
+                                                                                                                                                                                            C15.952,9,16,9.447,16,10z"/>
+                                        </svg>
+
+                                    </button>
+                                </a>
                             </div>
-                        </div>
-                        <div class="pr-1">
-                            <a @onclick="() => NavigateToAddAdult()">
-                            <button class="p-0 w-12 h-12 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
-                                
-                                    <svg viewBox="0 0 10 10" enable-background="new 0 0 20 20" class="w-4 h-4 inline-block">
-                                        <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399                                                                                                                        C15.952,9,16,9.447,16,10z"/>
-                                    </svg>
-                            </button>
-                            </a>
                         </div>
                     </div>
-                </div>
-                <table class="min-w-max w-full table-auto shadow-xl">
-                    <thead>
-                    <tr class="bg-gradient-to-l from-blue-100 to-green-100 text-gray-800 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Id
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                FirstName
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                LastName
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Age
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Sex
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Action
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-gray-700 text-sm font-light">
-                    @foreach (Adult item in toShowAdults)
-                    {
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                    <table class="min-w-max w-full table-auto shadow-xl">
+                        <thead>
+                        <tr class="bg-gradient-to-l from-blue-100 to-green-100 text-gray-800 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    <span class="font-medium">@item.Id</span>
+                                    Id
                                 </div>
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
+                            </th>
+                            <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    <span class="font-medium">@item.FirstName</span>
+                                    FirstName
                                 </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
+                            </th>
+                            <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    <span>@item.LastName</span>
+                                    LastName
                                 </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
+                            </th>
+                            <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    <span>@item.Age</span>
+                                    Age
                                 </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
+                            </th>
+                            <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    <span>@item.Sex</span>
+                                    Sex
                                 </div>
-                            </td>
-
-                            <td class="py-3 px-6 text-center">
-                                <div class="flex item-center justify-center">
-                                    <div class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
-                                        <a @onclick="() => NavigateToAdultView(item.Id)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    <div class="w-4 mr-2 transform hover:text-yellow-500 hover:scale-110">
-                                        <a @onclick="() => NavigateToEditAdult(item.Id)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
-                                        <a @onclick="() => DeleteAdult(item.Id)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                            </svg>
-                                        </a>
-                                    </div>
+                            </th>
+                            <th class="py-3 px-6 text-left ">
+                                <div class="flex items-center justify-center">
+                                    Action
                                 </div>
-                            </td>
+                            </th>
                         </tr>
-                    }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="text-gray-700 text-sm font-light">
+                        @foreach (Adult item in toShowAdults)
+                        {
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <span class="font-medium">@item.Id</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <span class="font-medium">@item.FirstName</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.LastName</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.Age</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.Sex</span>
+                                    </div>
+                                </td>
+
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex item-center justify-center">
+                                        <div class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
+                                            <a @onclick="() => NavigateToAdultView(item.Id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="w-4 mr-2 transform hover:text-yellow-500 hover:scale-110">
+                                            <a @onclick="() => NavigateToEditAdult(item.Id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                                            <a @onclick="() => DeleteAdult(item.Id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 @* <h4>Children</h4> *@
-<div class="overflow-x-auto">
-    <div class="min-w-screen flex items-center justify-center bg-white font-sans overflow-hidden">
-        <div class="w-full lg:w-5/6">
-            <div class="bg-white rounded my-6">
-                <div class=" text-l font-black">
-                    <h1 class="flex item-center justify-center text-xl text-black">Children</h1>
-                    <div class="bg-white p-2 flex flex-row">
-                        <div class="relative inline-flex min-w-max w-full">
-                            <div>
-                                <select @onchange="@((arg) => FilterBy(arg))" class="border border-gray-300 rounded-full text-gray-600 h-12 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                                    <option>Choose filter</option>
-                                    <option>Id</option>
-                                    <option>FirstName</option>
-                                    <option>LastName</option>
+    <div class="overflow-x-auto">
+        <div class="min-w-screen flex items-center justify-center bg-white font-sans overflow-hidden">
+            <div class="w-full lg:w-5/6">
+                <div class="bg-white rounded my-6">
+                    <div class=" text-l font-black">
+                        <h1 class="flex item-center justify-center text-xl text-black">Children</h1>
+                        <div class="bg-white p-2 flex flex-row">
+                            <div class="relative inline-flex min-w-max w-full">
+                                <div>
+                                    <select @onchange="@((arg) => FilterBy(arg))" class="border border-gray-300 rounded-full text-gray-600 h-12 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                                        <option>Choose filter</option>
+                                        <option>Id</option>
+                                        <option>FirstName</option>
+                                        <option>LastName</option>
 
-                                </select>
+                                    </select>
+                                </div>
+                                <div class="ml-2 border-2 flex justify-between rounde-md rounded-md">
+                                    <input @oninput="@((arg) => FilterArg(arg, "Child"))" class=" px-3 flex-grow outline-none text-gray-600 focus:text-blue-600" type="text" placeholder="Search Children..."/>
+                                    <spa class="mt-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 hover:text-blue-400 transition duration-100 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                        </svg>
+                                    </spa>
+                                </div>
                             </div>
-                            <div class="ml-2 border-2 flex justify-between rounde-md rounded-md">
-                                <input @oninput="@((arg) => FilterArg(arg, "Child"))" class=" px-3 flex-grow outline-none text-gray-600 focus:text-blue-600" type="text" placeholder="Search Children..."/>
-                                <spa class="mt-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 hover:text-blue-400 transition duration-100 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                                    </svg>
-                                </spa>
-                            </div>
-                        </div>
-                        <div class="pr-1">
-                            <a @onclick="() => NavigateToAddChildren()">
-                                <button
-                                    class="p-0 w-12 h-12 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
-                                
-                                    <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
-                                        <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+                            <div class="pr-1">
+                                <a @onclick="() => NavigateToAddChildren()">
+                                    <button
+                                        class="p-0 w-12 h-12 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+
+                                        <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
+                                            <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
                                                                                                                                                                 C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
                                                                                                                                                                 C15.952,9,16,9.447,16,10z"/>
-                                    </svg>
-                                
-                                </button>
-                            </a>
+                                        </svg>
+
+                                    </button>
+                                </a>
+                            </div>
+
                         </div>
-                        
                     </div>
-                </div>
-                
-                <table class="min-w-max w-full table-auto shadow-xl">
-                    <thead>
-                    <tr class="bg-gradient-to-l from-blue-100 to-green-100 text-gray-800 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-left ">
 
-                            <div class="flex items-center justify-center">
-                                Id
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                FirstName
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                LastName
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Age
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Sex
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Action
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-gray-700 text-sm font-light">
-                    @foreach (Child item in toShowChildren)
-                    {
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                <div class="flex items-center justify-center">
-                                    <span class="font-medium">@item.Id</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
-                                <div class="flex items-center justify-center">
-                                    <span class="font-medium">@item.FirstName</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
-                                <div class="flex items-center justify-center">
-                                    <span>@item.LastName</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
-                                <div class="flex items-center justify-center">
-                                    <span>@item.Age</span>
-                                </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
-                                <div class="flex items-center justify-center">
-                                    <span>@item.Sex</span>
-                                </div>
-                            </td>
+                    <table class="min-w-max w-full table-auto shadow-xl">
+                        <thead>
+                        <tr class="bg-gradient-to-l from-blue-100 to-green-100 text-gray-800 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left ">
 
-                            <td class="py-3 px-6 text-center">
-                                <div class="flex item-center justify-center">
-                                    <div class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
-                                        <a @onclick="() => NavigateToChildView(item.Id)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    <div class="w-4 mr-2 transform hover:text-yellow-500 hover:scale-110">
-                                        <a @onclick="() => NavigateToEditChildren(item.Id)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
-                                            </svg>
-                                        </a>
-                                    </div>
-                                    <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
-                                        <a @onclick="() => DeleteChildren(item.Id)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                            </svg>
-                                        </a>
-                                    </div>
+                                <div class="flex items-center justify-center">
+                                    Id
                                 </div>
-                            </td>
+                            </th>
+                            <th class="py-3 px-6 text-left ">
+                                <div class="flex items-center justify-center">
+                                    FirstName
+                                </div>
+                            </th>
+                            <th class="py-3 px-6 text-left ">
+                                <div class="flex items-center justify-center">
+                                    LastName
+                                </div>
+                            </th>
+                            <th class="py-3 px-6 text-left ">
+                                <div class="flex items-center justify-center">
+                                    Age
+                                </div>
+                            </th>
+                            <th class="py-3 px-6 text-left ">
+                                <div class="flex items-center justify-center">
+                                    Sex
+                                </div>
+                            </th>
+                            <th class="py-3 px-6 text-left ">
+                                <div class="flex items-center justify-center">
+                                    Action
+                                </div>
+                            </th>
                         </tr>
-                    }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="text-gray-700 text-sm font-light">
+                        @foreach (Child item in toShowChildren)
+                        {
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <span class="font-medium">@item.Id</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <span class="font-medium">@item.FirstName</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.LastName</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.Age</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.Sex</span>
+                                    </div>
+                                </td>
+
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex item-center justify-center">
+                                        <div class="w-4 mr-2 transform hover:text-blue-500 hover:scale-110">
+                                            <a @onclick="() => NavigateToChildView(item.Id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="w-4 mr-2 transform hover:text-yellow-500 hover:scale-110">
+                                            <a @onclick="() => NavigateToEditChildren(item.Id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                        <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                                            <a @onclick="() => DeleteChildren(item.Id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 @* <h4>Pets</h4> *@
 
 
-<div class="overflow-x-auto">
-    <div class="min-w-screen flex items-center justify-center bg-white font-sans overflow-hidden">
-        <div class="w-full lg:w-5/6">
-            <div class="bg-white rounded my-6">
-                <div class="flex items-center justify-center py-10 px-6 text-xl font-black">
-                    <h1 class="text-black">Pets</h1>
-                    <div class="pl-5">
-                        <button
-                            class="p-0 w-12 h-12 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
-                            <a @onclick="() => NavigateToAddPet()">
-                                <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
-                                    <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
+    <div class="overflow-x-auto">
+        <div class="min-w-screen flex items-center justify-center bg-white font-sans overflow-hidden">
+            <div class="w-full lg:w-5/6">
+                <div class="bg-white rounded my-6">
+                    <div class="flex items-center justify-center py-10 px-6 text-xl font-black">
+                        <h1 class="text-black">Pets</h1>
+                        <div class="pl-5">
+                            <button
+                                class="p-0 w-12 h-12 bg-green-600 rounded-full hover:bg-green-700 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
+                                <a @onclick="() => NavigateToAddPet()">
+                                    <svg viewBox="0 0 20 20" enable-background="new 0 0 20 20" class="w-6 h-6 inline-block">
+                                        <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
                                                                                                                                                                                     C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
                                                                                                                                                                                     C15.952,9,16,9.447,16,10z"/>
-                                </svg>
-                            </a>
-                        </button>
+                                    </svg>
+                                </a>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <table class="min-w-max w-full table-auto shadow-xl">
-                    <thead>
-                    <tr class="bg-gradient-to-l from-blue-100 to-green-100 text-gray-800 uppercase text-sm leading-normal">
+                    <table class="min-w-max w-full table-auto shadow-xl">
+                        <thead>
+                        <tr class="bg-gradient-to-l from-blue-100 to-green-100 text-gray-800 uppercase text-sm leading-normal">
 
-                        <th class="py-3 px-6 text-left ">
+                            <th class="py-3 px-6 text-left ">
 
-                            <div class="flex items-center justify-center">
-                                Id
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Species
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Name
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Age
-                            </div>
-                        </th>
-                        <th class="py-3 px-6 text-left ">
-                            <div class="flex items-center justify-center">
-                                Action
-                            </div>
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody class="text-gray-700 text-sm font-light">
-                    @foreach (Pet item in allPets)
-                    {
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-3 px-6 text-left whitespace-nowrap">
                                 <div class="flex items-center justify-center">
-                                    <span class="font-medium">@item.Id</span>
+                                    Id
                                 </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
+                            </th>
+                            <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    <span>@item.Species</span>
+                                    Species
                                 </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
+                            </th>
+                            <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    <span>@item.Name</span>
+                                    Name
                                 </div>
-                            </td>
-                            <td class="py-3 px-6 text-left">
+                            </th>
+                            <th class="py-3 px-6 text-left ">
                                 <div class="flex items-center justify-center">
-                                    <span>@item.Age</span>
+                                    Age
                                 </div>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <div class="flex item-center justify-center">
-                                    <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
-                                        <a @onclick="() => DeletePet(item.Id)">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                                            </svg>
-                                        </a>
-                                    </div>
+                            </th>
+                            <th class="py-3 px-6 text-left ">
+                                <div class="flex items-center justify-center">
+                                    Action
                                 </div>
-                            </td>
+                            </th>
                         </tr>
-                    }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="text-gray-700 text-sm font-light">
+                        @foreach (Pet item in allPets)
+                        {
+                            <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                <td class="py-3 px-6 text-left whitespace-nowrap">
+                                    <div class="flex items-center justify-center">
+                                        <span class="font-medium">@item.Id</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.Species</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.Name</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-left">
+                                    <div class="flex items-center justify-center">
+                                        <span>@item.Age</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex item-center justify-center">
+                                        <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                                            <a @onclick="() => DeletePet(item.Id)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
 }
